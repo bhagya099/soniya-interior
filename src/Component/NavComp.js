@@ -17,16 +17,16 @@ const NavComp = () => {
             id="responsive-navbar-nav"
           >
             <Nav>
-              <Nav.Link as={Link} to="/interior-design">
+              <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/interior-design/about">
+              <Nav.Link as={Link} to="/about">
                 About Us
               </Nav.Link>
-              <Nav.Link as={Link} to="/interior-design/project">
+              <Nav.Link as={Link} to="/project">
                 Project
               </Nav.Link>
-              <Nav.Link as={Link} to="/interior-design/contact">
+              <Nav.Link as={Link} to="/contact">
                 Contact Us
               </Nav.Link>
             </Nav>

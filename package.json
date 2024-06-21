@@ -1,6 +1,6 @@
 {
-  "homepage": "https://github.com/bhagya099/soniya-interior.git",
-  "name": "interior-design",
+  "homepage": "https://github.com/bhagya099/soniya-interior",
+  "name": "soniya-interior",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

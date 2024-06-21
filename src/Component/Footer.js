@@ -12,7 +12,7 @@ const Footer = () => {
       <Row>
         <Col md={{ span: 3 }}>
           <h5>Sparkle Design Studio</h5>
-          <Link to="/interior-design/contact" className="text-white">
+          <Link to="/contact" className="text-white">
             Contact Us
           </Link>
         </Col>
