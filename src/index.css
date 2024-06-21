@@ -1,0 +1,53 @@
+/* 
+  natural - $natural-color: #E5D3BF;
+*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 8em;
+}
+
+.text-color {
+  color: #fff;
+}
+
+/* .background-color {
+  background-color: darkgoldenrod;
+} */
+
+.home-pics {
+  display: flex;
+  justify-content: center;
+}
+
+.background-color-footer {
+  background-color: #1d4061a2;
+}
+
+.footer {
+  margin: auto;
+}
+
+.img {
+  width: 500px;
+}
