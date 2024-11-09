@@ -7,11 +7,12 @@ const NavComp = () => {
     <>
       <Navbar expand="lg" className="mb-1">
         <Container>
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <img src={IMAGES.logo} alt="logo" className="logo" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
           <Navbar.Collapse
             className="justify-content-end"
             id="responsive-navbar-nav"
