@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/soniya-interior/static/css/main.59ecfd19.css",
-    "main.js": "/soniya-interior/static/js/main.47ca07fd.js",
+    "main.css": "/soniya-interior/static/css/main.dd2d8955.css",
+    "main.js": "/soniya-interior/static/js/main.f49f1092.js",
+    "static/media/Image10.JPG": "/soniya-interior/static/media/Image10.abf319005326c87e7b43.JPG",
+    "static/media/Image9.JPG": "/soniya-interior/static/media/Image9.c8d543034c2872e6a72f.JPG",
     "static/media/Image_20.jpg": "/soniya-interior/static/media/Image_20.f7e8cecd5452e625f008.jpg",
     "static/media/Image20.jpeg": "/soniya-interior/static/media/Image20.e70361190b292425fe44.jpeg",
     "static/media/Image_23.jpg": "/soniya-interior/static/media/Image_23.04b74a2a780c10badf04.jpg",
-    "static/media/Image2.JPG": "/soniya-interior/static/media/Image2.ea675b648150ab5997de.JPG",
-    "static/media/Image1.JPG": "/soniya-interior/static/media/Image1.9e08494ea23b4cf748d9.JPG",
     "static/media/Image_29.jpg": "/soniya-interior/static/media/Image_29.1a9d5c52e575d0ff237a.jpg",
     "static/media/Image_5.jpg": "/soniya-interior/static/media/Image_5.0e613a3836edec7e601e.jpg",
     "static/media/Image5.JPG": "/soniya-interior/static/media/Image5.8240ddf4924cd96fa028.JPG",
     "static/media/Image12.JPG": "/soniya-interior/static/media/Image12.3224288a62fe368ed725.JPG",
+    "static/media/Image17.jpg": "/soniya-interior/static/media/Image17.fd6e4e332e8af878874e.jpg",
     "static/media/Image_19.jpg": "/soniya-interior/static/media/Image_19.a66d86e31d9a5e8cc423.jpg",
     "static/media/Image_21.jpg": "/soniya-interior/static/media/Image_21.b59ea662141d8bfc241a.jpg",
     "static/media/Image_22.jpg": "/soniya-interior/static/media/Image_22.10cc0fbb321ce22a71d1.jpg",
@@ -37,11 +38,11 @@
     "static/media/Soniya_pic.JPG": "/soniya-interior/static/media/Soniya_pic.2e1b00f1ed2fde261d55.JPG",
     "static/media/logo.jpg": "/soniya-interior/static/media/logo.0c94a064b2ec97997b4c.jpg",
     "index.html": "/soniya-interior/index.html",
-    "main.59ecfd19.css.map": "/soniya-interior/static/css/main.59ecfd19.css.map",
-    "main.47ca07fd.js.map": "/soniya-interior/static/js/main.47ca07fd.js.map"
+    "main.dd2d8955.css.map": "/soniya-interior/static/css/main.dd2d8955.css.map",
+    "main.f49f1092.js.map": "/soniya-interior/static/js/main.f49f1092.js.map"
   },
   "entrypoints": [
-    "static/css/main.59ecfd19.css",
-    "static/js/main.47ca07fd.js"
+    "static/css/main.dd2d8955.css",
+    "static/js/main.f49f1092.js"
   ]
 }
