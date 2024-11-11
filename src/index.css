@@ -2,6 +2,7 @@
   natural - $natural-color: #E5D3BF;
 */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
 
 body {
   -webkit-font-smoothing: antialiased;
@@ -23,6 +24,12 @@ html {
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 15px !important;
+  }
+}
+
 .logo {
   width: 8em;
 }
@@ -31,17 +38,18 @@ html {
   color: #fff;
 }
 
-/* .background-color {
-  background-color: darkgoldenrod;
-} */
-
 .home-pics {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .background-color-footer {
-  background-color: #1d4061a2;
+  background-color: #1E3663;
 }
 
 .footer {
@@ -49,5 +57,13 @@ html {
 }
 
 .img {
-  width: 500px;
+  width: 250px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.nav-link {
+  color: #09361C;
 }
