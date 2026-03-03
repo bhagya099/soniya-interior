@@ -54,18 +54,6 @@ export default function ContactUs() {
             </Form>
           </Col>
         </Row>
-        <Row>
-          <iframe
-            title="Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.333667920497!2d144.7371918!3d-37.899262900000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6888137bc50f3%3A0x36edc50fb339888a!2s46%20Tamborine%20Ave%2C%20Point%20Cook%20VIC%203030!5e0!3m2!1sen!2sau!4v1689472734339!5m2!1sen!2sau"
-            width="600"
-            height="450"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            className="border-0"
-          ></iframe>
-        </Row>
       </Container>
       <Footer />
     </>

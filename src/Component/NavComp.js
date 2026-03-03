@@ -1,7 +1,6 @@
 import { Nav, Container, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import IMAGES from "../image/img";
-import { useState } from "react";
 
 const NavComp = () => {
   const handleLinkClick = () => {
@@ -13,9 +12,9 @@ const NavComp = () => {
 
   return (
     <>
-      <Navbar expand="lg" className="mb-1">
+      <Navbar expand="lg" sticky="top" className="shadow-sm mb-1 navbar">
         <Container>
-          <Navbar.Brand href="/soniya-interior">
+          <Navbar.Brand as={Link} to="/">
             <img src={IMAGES.logo} alt="logo" className="logo" />
           </Navbar.Brand>
 
@@ -33,10 +32,10 @@ const NavComp = () => {
                 About Us
               </Nav.Link>
               <Nav.Link as={Link} to="/project">
-                Project
+                Projects
               </Nav.Link>
               <Nav.Link as={Link} to="/contact">
-                Contact Us
+                Contact
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
