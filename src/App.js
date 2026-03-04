@@ -5,7 +5,6 @@ import Project from "./Component/Project";
 import Home from "./Component/Home";
 import ProjectDetail from "./Component/ProjectDetail";
 import { Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   return (

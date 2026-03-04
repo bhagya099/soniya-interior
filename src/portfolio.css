@@ -22,6 +22,125 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; color: var(--brand-900)
 .btn-primary { background: var(--earth); border: none }
 .btn-primary:hover { background: #a88665 }
 
+/* Unified button styles */
+.btn.btn-primary, button.btn-primary, a.btn.btn-primary, input.btn-primary {
+  background-color: var(--earth) !important;
+  border-color: var(--earth) !important;
+  color: #fff !important;
+}
+.btn.btn-primary:hover, button.btn-primary:hover, a.btn.btn-primary:hover {
+  background-color: #a88665 !important;
+  border-color: #a88665 !important;
+}
+
+/* Override Bootstrap's complex active+focus selector */
+.btn.btn-primary:not(:disabled):not(.disabled):active:focus,
+button.btn-primary:not(:disabled):not(.disabled):active:focus,
+a.btn.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn.btn-primary:not(:disabled):not(.disabled):active,
+button.btn-primary:not(:disabled):not(.disabled):active,
+a.btn.btn-primary:not(:disabled):not(.disabled):active,
+.btn.btn-primary.active,
+.btn.btn-primary:active,
+.show > .btn.btn-primary.dropdown-toggle {
+  background-color: var(--earth) !important;
+  border-color: var(--earth) !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 4px rgba(191,167,138,0.18) !important;
+}
+.btn-outline-primary {
+  color: var(--earth) !important;
+  border-color: var(--earth) !important;
+  background: transparent !important;
+}
+.btn-outline-primary:hover {
+  color: #fff !important;
+  background: var(--earth) !important;
+  border-color: var(--earth) !important;
+}
+.btn-secondary {
+  background: #fff;
+  color: var(--brand-900);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.btn-secondary:hover { background: #f6f2ea }
+
+/* custom CTA buttons */
+.btn-primary.custom-cta, .custom-cta.btn-primary {
+  background: var(--earth);
+  color: #fff;
+  padding: 0.75rem 1.35rem;
+  font-weight: 700;
+}
+
+/* Make link-styled buttons match site color */
+.btn-link, .nav-link {
+  color: var(--brand-900);
+}
+.btn-link:hover, .nav-link:hover { color: var(--accent) }
+
+/* Focus styles to match site color */
+.btn-primary:focus, .btn-primary:focus-visible,
+.btn-outline-primary:focus, .btn-outline-primary:focus-visible,
+.btn-secondary:focus, .btn-secondary:focus-visible,
+.btn-link:focus, .btn-link:focus-visible,
+.nav-link:focus, .nav-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(191,167,138,0.18); /* subtle earth halo */
+  border-color: var(--earth);
+}
+/* Stronger specificity for focus to override bootstrap */
+.btn.btn-primary:focus, button.btn-primary:focus, a.btn.btn-primary:focus {
+  box-shadow: 0 0 0 4px rgba(191,167,138,0.18) !important;
+  border-color: var(--earth) !important;
+}
+
+/* Project-specific button focus overrides (strong specificity) */
+.portfolio-item .btn:focus, .portfolio-item button:focus,
+.project-card .btn:focus, .project-card button:focus,
+.about-bio .btn:focus, .contact-card .btn:focus,
+.project-detail .btn:focus, .project-detail button:focus,
+.portfolio-item .btn:focus-visible, .project-card .btn:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 6px rgba(191,167,138,0.22) !important;
+  border-color: var(--earth) !important;
+  background-color: var(--earth) !important;
+  color: #fff !important;
+}
+
+/* Target project filter buttons specifically */
+.projects-filter .btn, .projects-filter .btn:focus, .projects-filter .btn:active, .projects-filter .btn:focus-visible {
+  background-color: var(--earth) !important;
+  border-color: var(--earth) !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 6px rgba(191,167,138,0.18) !important;
+}
+.projects-filter .btn.btn-outline-primary, .projects-filter .btn-outline-primary {
+  color: var(--earth) !important;
+  border-color: var(--earth) !important;
+  background: transparent !important;
+}
+.projects-filter .btn-outline-primary:focus, .projects-filter .btn-outline-primary:active, .projects-filter .btn-outline-primary:focus-visible {
+  color: #fff !important;
+  background: var(--earth) !important;
+  border-color: var(--earth) !important;
+  box-shadow: 0 0 0 6px rgba(191,167,138,0.18) !important;
+}
+
+/* Form control focus */
+.form-control:focus, .form-select:focus, .form-control:focus-visible {
+  border-color: var(--earth);
+  box-shadow: 0 0 0 4px rgba(191,167,138,0.12);
+  outline: none;
+}
+
+/* Make focus for links more visible */
+a:focus, a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(191,167,138,0.12);
+}
+
+
 .about-hero, .contact-hero { padding: 2.5rem 0 }
 .about-bio { background: #fff; padding: 1.5rem; border-radius:8px }
 .about-image { border-radius:8px }
@@ -76,8 +195,43 @@ h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; color: var(--brand-900)
 .project-card img { height:220px; object-fit:cover }
 .project-card:hover { transform: translateY(-6px); transition: all .25s ease }
 .sticky-top.navbar { background: rgba(255,255,255,0.95) }
-.footer-custom { background: #0f1724; color: #fff; padding: 2rem 1rem }
-.footer-custom a { color: #f3f4f6 }
+
+/* Footer (light & warm) */
+.footer-custom {
+  background: linear-gradient(180deg, rgba(246,241,234,0.6), rgba(246,241,234,0.6));
+  color: var(--brand-900);
+  padding: 3rem 0 2rem 0;
+}
+.footer-custom .footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  color: var(--brand-900);
+}
+.footer-tagline { color: #6b6b6b; margin-bottom: 0.75rem }
+.footer-social { display:flex; gap:0.6rem; margin-top:0.5rem }
+.social-link {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px; border-radius:50%;
+  color: var(--brand-900); background: rgba(28,43,62,0.06);
+  border: 1px solid rgba(28,43,62,0.04);
+}
+.social-link svg { color: var(--brand-900) }
+.social-link:hover { background: var(--earth); color: #fff }
+
+.footer-heading { font-weight:700; margin-bottom:0.5rem }
+.footer-links li { margin-bottom:0.35rem }
+.footer-links a { color: var(--brand-900); text-decoration: none }
+.footer-links a:hover { color: var(--earth); text-decoration: underline }
+
+.footer-subscribe .form-control { background: #fff; border: 1px solid rgba(0,0,0,0.06) }
+.footer-subscribe .btn { padding: 0.45rem 0.9rem }
+
+.footer-custom .border-top { border-top: none }
+.footer-custom .border-top { border-top: 1px solid rgba(28,43,62,0.06) }
+.footer-custom .text-muted { color: #6b6b6b }
+.footer-custom a { color: var(--brand-900) }
+.footer-custom a:hover { color: var(--earth) }
 
 /* Masonry-like grid for portfolio */
 .portfolio-grid {
