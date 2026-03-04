@@ -1,57 +1,29 @@
 import React from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../Component/Footer";
 
 const About = () => {
   return (
     <>
-      <Container>
-        <Row>
-          <Col xs={12} md={6} className="p-3 mt-2">
-            <h5>
-              Your Home Should be "LIVING SPACE"
-              <span> Not a Storage Space</span>
-            </h5>
-            <br></br>
-            <p>
-              Sparkle Design Studio are Design Studio that offers services aimed
-              at the end design of space. They have different kind if aspect
-              towards design and believe in working witht clean lines and simple
-            </p>
-            <p>
-              As abudding designer they trained under several products and
-              Interior Designers,inspired by Styles.History, Art, books, Movies
-              TRaveling anything that makes them creative.
-            </p>
-            <p>
-              They blend of diffrent styles like traditional and Modern rather
-              than having a signature style thye takes an Organic and
-              Multipurpose approch
-            </p>
-            <br></br>
-            <br></br>
-            <p>
-              Soniya is always a passionate Designer and Stylisht. She completed
-              her undergraduate degree at Annamalai University and International
-              Institute with a major in BSC Interior Designing in the top 10% of
-              her class.She has very keen eye for the detailing and designing.
-            </p>
-            <br></br>
-            <p>
-              She has 5 year of experince in the filed where she has completed
-              variuos project lie Resdential, Commercial and Styling Home.
-            </p>
-          </Col>
-          <Col xs={12} md={6}>
-            <Image
-              src={require("../image/Soniya_pic.JPG")}
-              alt="Soniya_pic"
-              className="p-3 mr-3"
-              fluid
-            />
-          </Col>
-        </Row>
-      </Container>
+      <section className="about-hero">
+        <Container>
+          <Row className="align-items-center">
+            <Col md={6} className="about-bio">
+              <h2>About Soniya Interior</h2>
+              <p className="lead text-muted">Creating warm, considered spaces that feel like home.</p>
+              <p>
+                Soniya Interior is a boutique interior design studio focused on thoughtful space planning and refined finishes. We blend traditional craft with modern simplicity to deliver timeless interiors.
+              </p>
+              <p>
+                With strengths in residential and commercial projects, Soniya leads a small team that takes a hands-on approach during design and execution.
+              </p>
+            </Col>
+            <Col md={6} className="text-center">
+              <img src={require("../image/Soniya_pic.JPG")} alt="Soniya" className="img-fluid about-image shadow" />
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <Footer />
     </>
   );

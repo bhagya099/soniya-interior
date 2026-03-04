@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Button } from "react-bootstrap";
 import projects from "../data/projects";
 import Footer from "./Footer";
+import Lightbox from "./Lightbox";
 
 const Project = () => {
   const [filter, setFilter] = useState("All");
+  const [showLightbox, setShowLightbox] = useState(false);
+  const [lightboxImages, setLightboxImages] = useState([]);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const categories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
 
@@ -26,27 +29,28 @@ const Project = () => {
           ))}
         </div>
 
-        <Row xs={1} sm={2} md={3} className="g-4">
+        <div className="portfolio-grid">
           {projects
             .filter((p) => (filter === "All" ? true : p.category === filter))
             .map((p) => (
-              <Col key={p.id}>
-                <Card className="h-100 shadow-sm project-card">
-                  <Link to={`/project/${p.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-                    <Card.Img variant="top" src={p.image} alt={p.title} />
-                    <Card.Body>
-                      <Card.Title>{p.title}</Card.Title>
-                      <Card.Text>{p.description}</Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                      <small className="text-muted">{p.category}</small>
-                    </Card.Footer>
-                  </Link>
-                </Card>
-              </Col>
+              <div key={p.id} className="portfolio-item" onClick={() => { setLightboxImages(p.images || [p.image]); setLightboxIndex(0); setShowLightbox(true); }}>
+                <div className="portfolio-media">
+                  <img src={p.image} alt={p.title} />
+                  <div className="overlay">
+                    <div className="overlay-text">
+                      <h5>{p.title}</h5>
+                      <small>{p.category}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
-        </Row>
+        </div>
       </Container>
+
+      {showLightbox && (
+        <Lightbox images={lightboxImages} startIndex={lightboxIndex} onClose={() => setShowLightbox(false)} />
+      )}
 
       <Footer />
     </>

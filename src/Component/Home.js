@@ -1,5 +1,5 @@
 import React from "react";
-import IMAGES from "../image/img.js";
+// IMAGES intentionally removed; featured images come from `src/data/projects.js`
 import Footer from "../Component/Footer";
 import projects from "../data/projects";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";

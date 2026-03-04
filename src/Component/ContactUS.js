@@ -5,56 +5,46 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 export default function ContactUs() {
   return (
     <>
-      <Container className="contact mt-5 mb-5">
-        <Row className="text-center p-4 mt-5 border-bottom border-dark border-3">
-          <h1>Contact with us</h1>
-          <p className="m-2">We love to hear from You</p>
-        </Row>
+      <section className="contact-hero">
+        <Container>
+          <Row className="mb-4">
+            <Col className="text-center">
+              <h2>Get in touch</h2>
+              <p className="text-muted">Tell us about your project and we'll get back within 48 hours.</p>
+            </Col>
+          </Row>
 
-        <Row className="p-2 mt-5">
-          <Col xs={{ span: 12 }} md={{ span: 6 }}>
-            <h3>Let's Discuss About Your Spaces! </h3>
-            <p>
-              A descriptive paragraph that tells clients how good you are and
-              proves that you are the best choice that they’ve made.
-            </p>
-            <p>
-              This paragraph is also for those who are looking out for a
-              reliable interior design firm. Free Consultation Budget Quotations
-              Latest Technologies
-            </p>
-          </Col>
-          <Col className="mr-2" xs={{ span: 12 }} md={{ span: 6 }}>
-            <Form className="mb-4">
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control type="email" placeholder="Enter email" />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicname">
-                <Form.Control type="text" placeholder="Name" />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicphone">
-                <Form.Control type="number" placeholder="Mobile Number" />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicmessage">
-                <Form.Control type="text" placeholder="Message" />
-              </Form.Group>
-
-              <a
-                href="mailto:bhagyashree096@gmail.com"
-                className="text-dark me-4"
-              >
-                Click to Send an Email
-              </a>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+          <Row className="g-4">
+            <Col md={5}>
+              <div className="contact-card">
+                <h5>Contact</h5>
+                <p className="mb-1">Email: <a href="mailto:bhagyashree096@gmail.com">bhagyashree096@gmail.com</a></p>
+                <p>Phone: +91 98765 43210</p>
+                <p className="text-muted">Studio: By appointment only</p>
+              </div>
+            </Col>
+            <Col md={7}>
+              <div className="contact-card">
+                <Form className="contact-form">
+                  <Row>
+                    <Col md={6} className="mb-3">
+                      <Form.Control type="text" placeholder="Your name" />
+                    </Col>
+                    <Col md={6} className="mb-3">
+                      <Form.Control type="email" placeholder="Email" />
+                    </Col>
+                  </Row>
+                  <Form.Control className="mb-3" type="text" placeholder="Project brief (one line)" />
+                  <Form.Control as="textarea" rows={4} placeholder="Tell us more about your project" className="mb-3" />
+                  <div className="d-flex justify-content-end">
+                    <Button variant="primary">Send message</Button>
+                  </div>
+                </Form>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <Footer />
     </>
   );
