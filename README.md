@@ -1,5 +1,7 @@
 # Soniya Interior — Interior Designer Portfolio (React)
 
+https://bhagya099.github.io/soniya-interior/
+
 This repository is a small React-based template for an interior designer portfolio website. It includes pages for Home, About, Projects, and Contact and demonstrates a responsive portfolio grid with image previews.
 
 ## Features
