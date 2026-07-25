@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/soniya-interior/static/css/main.83633a4e.css",
-    "main.js": "/soniya-interior/static/js/main.98bf4776.js",
+    "main.js": "/soniya-interior/static/js/main.24f1500d.js",
     "static/media/Image_01.jpeg": "/soniya-interior/static/media/Image_01.491489913535813769ca.jpeg",
     "static/media/IMG_8421.jpeg": "/soniya-interior/static/media/IMG_8421.af560698fb637f8be5a0.jpeg",
     "static/media/IMG_8425.jpeg": "/soniya-interior/static/media/IMG_8425.75ac5c8b1b3da17ac5a2.jpeg",
@@ -75,10 +75,10 @@
     "static/media/logo.jpg": "/soniya-interior/static/media/logo.0c94a064b2ec97997b4c.jpg",
     "index.html": "/soniya-interior/index.html",
     "main.83633a4e.css.map": "/soniya-interior/static/css/main.83633a4e.css.map",
-    "main.98bf4776.js.map": "/soniya-interior/static/js/main.98bf4776.js.map"
+    "main.24f1500d.js.map": "/soniya-interior/static/js/main.24f1500d.js.map"
   },
   "entrypoints": [
     "static/css/main.83633a4e.css",
-    "static/js/main.98bf4776.js"
+    "static/js/main.24f1500d.js"
   ]
 }
