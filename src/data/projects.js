@@ -1,54 +1,104 @@
-import IMAGES from "../image/img";
+/**
+ * Project photos live in folders under src/image/rooms/, one folder per
+ * room (e.g. src/image/rooms/kitchen/). This file loads every image in
+ * each folder automatically — to add photos, just drop them into the
+ * matching folder and rebuild. No code changes needed.
+ *
+ * TO ADD A BRAND NEW ROOM: create a new folder under src/image/rooms/
+ * (e.g. "study-room"), drop photos in it, then add one entry to
+ * ROOM_DEFS below with the matching `slug` (the folder name).
+ */
 
-const projects = [
+// Loads every .jpg/.jpeg/.png file anywhere under src/image/rooms/
+const context = require.context("../image/rooms", true, /\.(jpe?g|png)$/i);
+
+const imagesBySlug = {};
+context.keys().forEach((key) => {
+  // key looks like "./living-room/Image_1.jpg"
+  const match = key.match(/^\.\/([^/]+)\//);
+  if (!match) return;
+  const slug = match[1];
+  (imagesBySlug[slug] = imagesBySlug[slug] || []).push({ key, src: context(key) });
+});
+Object.values(imagesBySlug).forEach((list) =>
+  list.sort((a, b) => a.key.localeCompare(b.key, undefined, { numeric: true }))
+);
+
+const ROOM_DEFS = [
   {
     id: 1,
-    title: "Modern Living Room",
-    description: "A bright modern living room with neutral palette and layered textures.",
-    image: IMAGES.Project_pics[0],
-    images: [IMAGES.Project_pics[0], IMAGES.Project_pics[5], IMAGES.Project_pics[3]],
-    category: "Residential",
+    slug: "living-room",
+    title: "Living Room",
+    description: "Bright, layered living spaces designed for everyday comfort and entertaining.",
   },
   {
     id: 2,
-    title: "Elegant Dining Space",
-    description: "Custom joinery and ambient lighting to elevate dining experiences.",
-    image: IMAGES.Project_pics[1],
-    images: [IMAGES.Project_pics[1], IMAGES.Project_pics[2], IMAGES.Project_pics[4]],
-    category: "Residential",
+    slug: "dining-room",
+    title: "Dining Room",
+    description: "Dining areas built for gathering, with custom lighting and finishes.",
   },
   {
     id: 3,
-    title: "Compact Kitchen Remodel",
-    description: "Functional layout and durable finishes for small-footprint kitchens.",
-    image: IMAGES.Project_pics[2],
-    images: [IMAGES.Project_pics[2], IMAGES.Project_pics[8] || IMAGES.Project_pics[0]],
-    category: "Residential",
+    slug: "kitchen",
+    title: "Kitchen",
+    description: "Functional, durable kitchen layouts finished with warm materials.",
   },
   {
     id: 4,
-    title: "Office Interior",
-    description: "Collaborative office with flexible seating and natural light.",
-    image: IMAGES.Project_pics[3],
-    images: [IMAGES.Project_pics[3], IMAGES.Project_pics[9] || IMAGES.Project_pics[1]],
-    category: "Commercial",
+    slug: "bedroom",
+    title: "Bedroom",
+    description: "Calm, restful bedrooms with considered lighting and storage.",
   },
   {
     id: 5,
-    title: "Bathroom Update",
-    description: "Spa-like bathroom with clean lines and modern fixtures.",
-    image: IMAGES.Project_pics[4],
-    images: [IMAGES.Project_pics[4], IMAGES.Project_pics[11] || IMAGES.Project_pics[2]],
-    category: "Residential",
+    slug: "kids-bedroom",
+    title: "Kids Bedroom",
+    description: "Playful, personalized rooms designed to grow with your child.",
   },
   {
     id: 6,
-    title: "Bedroom Retreat",
-    description: "A calm, layered bedroom with soft textiles and warm tones.",
-    image: IMAGES.Project_pics[5],
-    images: [IMAGES.Project_pics[5], IMAGES.Project_pics[6] || IMAGES.Project_pics[0]],
-    category: "Residential",
+    slug: "bathroom",
+    title: "Bathroom",
+    description: "Spa-inspired bathrooms with clean lines and modern fixtures.",
+  },
+  {
+    id: 7,
+    slug: "pooja-room",
+    title: "Pooja Room",
+    description: "Dedicated prayer spaces finished with marble and warm wood detailing.",
+  },
+  {
+    id: 8,
+    slug: "foyer",
+    title: "Foyer",
+    description: "A considered first impression — entryway storage and styling.",
+  },
+  {
+    id: 9,
+    slug: "home-office",
+    title: "Home Office",
+    description: "A quiet, functional corner designed for focused work at home.",
+  },
+  {
+    id: 10,
+    slug: "balcony-terrace",
+    title: "Balcony / Terrace",
+    description: "Outdoor lounges and green corners that extend living space outward.",
   },
 ];
+
+export const ROOMS = ROOM_DEFS.map((r) => r.title);
+
+const projects = ROOM_DEFS.filter((def) => (imagesBySlug[def.slug] || []).length > 0).map((def) => {
+  const images = (imagesBySlug[def.slug] || []).map((i) => i.src);
+  return {
+    id: def.id,
+    title: def.title,
+    description: def.description,
+    room: def.title,
+    images,
+    image: images[0],
+  };
+});
 
 export default projects;

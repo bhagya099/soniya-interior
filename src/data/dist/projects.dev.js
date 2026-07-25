@@ -51,6 +51,27 @@ var projects = [{
   image: _img["default"].Project_pics[5],
   images: [_img["default"].Project_pics[5], _img["default"].Project_pics[6] || _img["default"].Project_pics[0]],
   category: "Residential"
+}, {
+  id: 7,
+  title: "New Collection",
+  description: "A selection of recent photos from our latest shoots.",
+  image: _img["default"].New_pics[0],
+  images: _img["default"].New_pics,
+  category: "New"
+}, {
+  id: 8,
+  title: "Extras",
+  description: "Additional images and behind-the-scenes photos.",
+  image: _img["default"].Extra_pics[0],
+  images: _img["default"].Extra_pics,
+  category: "Extras"
+}, {
+  id: 9,
+  title: "Misc & Team",
+  description: "Miscellaneous images including team photos.",
+  image: _img["default"].Root_pics[0],
+  images: _img["default"].Root_pics,
+  category: "Misc"
 }];
 var _default = projects;
 exports["default"] = _default;

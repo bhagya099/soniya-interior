@@ -9,10 +9,10 @@ const About = () => {
         <Container>
           <Row className="align-items-center">
             <Col md={6} className="about-bio">
-              <h2>About Soniya Interior</h2>
+              <h2>About Sparkle Design Studio</h2>
               <p className="lead text-muted">Creating warm, considered spaces that feel like home.</p>
               <p>
-                Soniya Interior is a boutique interior design studio focused on thoughtful space planning and refined finishes. We blend traditional craft with modern simplicity to deliver timeless interiors.
+                Sparkle Design Studio is a boutique interior design studio focused on thoughtful space planning and refined finishes. We blend traditional craft with modern simplicity to deliver timeless interiors.
               </p>
               <p>
                 With strengths in residential and commercial projects, Soniya leads a small team that takes a hands-on approach during design and execution.

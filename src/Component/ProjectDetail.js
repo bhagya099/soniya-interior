@@ -36,7 +36,7 @@ const ProjectDetail = () => {
                   src={img}
                   alt={project.title + " " + (i + 1)}
                   className="img-thumbnail"
-                  style={{ width: 120, height: 80, objectFit: "cover", cursor: "pointer" }}
+                  style={{ height: 80, width: "auto", objectFit: "contain", background: "#efe8dd", cursor: "pointer" }}
                   onClick={() => { setLightboxIndex(i); setShowLightbox(true); }}
                 />
               ))}
@@ -44,7 +44,7 @@ const ProjectDetail = () => {
           </Col>
           <Col md={5}>
             <h2>{project.title}</h2>
-            <p className="text-muted">{project.category}</p>
+            <p className="text-muted">{(project.images || [project.image]).length} photos</p>
             <p>{project.description}</p>
             <Button as={Link} to="/contact" variant="primary" className="mt-2">Contact Us</Button>
             <div className="mt-3">
