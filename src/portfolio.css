@@ -19,6 +19,18 @@ body {
 
 h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; color: var(--brand-900); }
 
+a {
+	color: var(--earth);
+  	text-decoration: underline;
+	background: transparent;
+	transition: all .2s ease;
+
+	&:hover {
+		color: var(--accent);
+		text-decoration: none;
+	}
+}
+
 .btn-primary { background: var(--earth); border: none }
 .btn-primary:hover { background: #a88665 }
 

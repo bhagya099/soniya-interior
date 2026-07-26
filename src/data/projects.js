@@ -93,6 +93,7 @@ const projects = ROOM_DEFS.filter((def) => (imagesBySlug[def.slug] || []).length
   const images = (imagesBySlug[def.slug] || []).map((i) => i.src);
   return {
     id: def.id,
+    slug: def.slug,
     title: def.title,
     description: def.description,
     room: def.title,

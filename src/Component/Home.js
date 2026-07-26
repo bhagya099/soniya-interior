@@ -69,7 +69,7 @@ export default function Home() {
                   <Card.Body>
                     <Card.Title>{p.title}</Card.Title>
                     <Card.Text>{p.description}</Card.Text>
-                    <Button as={Link} to="/project" variant="primary" className="custom-cta">
+                    <Button as={Link} to={`/project?room=${p.slug}`} variant="primary" className="custom-cta">
                       See More
                     </Button>
                   </Card.Body>

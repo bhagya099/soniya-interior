@@ -76,7 +76,7 @@ export default function ContactUs() {
               <div className="contact-card">
                 <h5>Contact</h5>
                 <p className="mb-1">Email: <a href="mailto:sparkledesignstudio7@gmail.com">sparkledesignstudio7@gmail.com</a></p>
-                <p>Phone: +91 98765 43210</p>
+                <p>Phone: <a href="tel:+919876543210">+91 98765 43210</a></p>
                 <p className="text-muted">Studio: By appointment only</p>
               </div>
             </Col>

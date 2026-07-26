@@ -1,11 +1,14 @@
 import React, { useMemo, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
 import projects, { ROOMS } from "../data/projects";
 import Footer from "./Footer";
 import Lightbox from "./Lightbox";
 
 const Project = () => {
-  const [activeRoom, setActiveRoom] = useState("All");
+  const [searchParams] = useSearchParams();
+  const roomFromSlug = projects.find((p) => p.slug === searchParams.get("room"))?.room;
+  const [activeRoom, setActiveRoom] = useState(roomFromSlug || "All");
   const [showLightbox, setShowLightbox] = useState(false);
   const [lightboxImages, setLightboxImages] = useState([]);
   const [lightboxIndex, setLightboxIndex] = useState(0);

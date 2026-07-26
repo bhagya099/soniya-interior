@@ -1,6 +1,6 @@
 import { Nav, Container, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
-import IMAGES from "../image/img";
+import logo from "../image/logo.jpg";
 
 const NavComp = () => {
   const handleLinkClick = () => {
@@ -15,7 +15,7 @@ const NavComp = () => {
       <Navbar expand="lg" sticky="top" className="shadow-sm mb-1 navbar">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <img src={IMAGES.logo} alt="logo" className="logo" />
+            <img src={logo} alt="logo" className="logo" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
