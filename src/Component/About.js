@@ -19,7 +19,7 @@ const About = () => {
               </p>
             </Col>
             <Col md={6} className="text-center">
-              <img src={require("../image/Soniya_pic.JPG")} alt="Soniya" className="img-fluid about-image shadow" />
+              <img src={require("../image/Soniya-pic.jpeg")} alt="Soniya" className="img-fluid about-image shadow" />
             </Col>
           </Row>
         </Container>
