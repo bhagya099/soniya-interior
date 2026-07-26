@@ -277,10 +277,20 @@ a:focus, a:focus-visible {
 .portfolio-media { position: relative; overflow: hidden; border-radius:8px }
 .portfolio-media img { display: block; width: 100%; height: auto; transition: transform .45s cubic-bezier(.2,.8,.2,1) }
 .portfolio-media:hover img { transform: scale(1.06) }
-.overlay { position: absolute; left: 0; right: 0; bottom: 0; top: 0; display:flex; align-items:flex-end; justify-content:center; background: linear-gradient(180deg, rgba(251,248,244,0) 40%, rgba(43,42,40,0.18)); opacity:0; transition: opacity .28s ease }
-.portfolio-media:hover .overlay { opacity: 1 }
-.overlay-text { padding: 1.1rem; color: var(--brand-900); text-align: center; background: rgba(255,255,255,0.85); border-radius:6px }
-.overlay-text h5 { margin: 0 0 .25rem 0; font-weight:600; font-family: 'Playfair Display', serif }
+.overlay { position: absolute; left: 0; right: 0; bottom: 0; top: 0; display:flex; align-items:flex-end; justify-content:center; background: linear-gradient(180deg, rgba(251,248,244,0) 40%, rgba(43,42,40,0.18)) }
+.overlay-text {
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 0.6rem;
+  color: var(--brand-900);
+  text-align: center;
+  background: rgba(255,255,255,0.85);
+  border-radius:6px;
+  transform: scale(0.85);
+  transform-origin: bottom center;
+  transition: transform .28s ease, padding .28s ease;
+}
+.portfolio-media:hover .overlay-text { transform: scale(1.08); padding: 1.1rem }
+.overlay-text h5 { margin: 0 0 .25rem 0; font-weight:600; font-family: 'Playfair Display', serif; font-size: 0.95rem }
 
 /* Badge indicating additional images */
 .image-count-badge {
