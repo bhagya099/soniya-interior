@@ -1,13 +1,17 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import logoFooter from "../image/logo-footer.png";
 
 const Footer = () => {
   return (
     <footer className="footer-custom">
       <Container>
-        <Row className="align-items-start gy-4">
-          <Col md={6}>
-            <h3 className="footer-brand">Sparkle Design Studio</h3>
+        <Row className="align-items-center gy-4">
+			<Col md={2} className="d-none d-md-block">
+				<img src={logoFooter} alt="Sparkle Design Studio" className="footer-logo" />
+			</Col>
+          <Col md={5}>
+			<h3 className="footer-brand">Sparkle Design Studio</h3>
             <p className="footer-tagline">Crafting warm, livable spaces with timeless materials.</p>
             <div className="footer-social">
               <a href="https://www.instagram.com/sparklebysoniya?igsh=eWpoN2UwZ2ZhcDV4&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-link">
@@ -16,7 +20,7 @@ const Footer = () => {
             </div>
           </Col>
 
-          <Col md={6}>
+          <Col md={5}>
             <h6 className="footer-heading">Stay in touch</h6>
             <p className="mb-2">News, occasional design tips, and new projects.</p>
             <Form className="d-flex footer-subscribe" onSubmit={(e)=>e.preventDefault()}>

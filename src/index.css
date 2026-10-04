@@ -1,4 +1,4 @@
-/* 
+/*
   natural - $natural-color: #E5D3BF;
 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap');
@@ -40,7 +40,9 @@ html {
 }
 
 .logo {
-  width: 7.5rem;
+  width: 48px;
+  height: auto;
+
 }
 
 .text-color {

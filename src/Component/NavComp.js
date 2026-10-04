@@ -1,6 +1,6 @@
 import { Nav, Container, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
-import logo from "../image/logo.jpg";
+import logo from "../image/logo.png";
 
 const NavComp = () => {
   const handleLinkClick = () => {
