@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/soniya-interior/static/css/main.18d298c4.css",
-    "main.js": "/soniya-interior/static/js/main.b1c12851.js",
+    "main.css": "/soniya-interior/static/css/main.e0fc3e8a.css",
+    "main.js": "/soniya-interior/static/js/main.26deae58.js",
     "static/media/IMG_0826.jpeg": "/soniya-interior/static/media/IMG_0826.87f57ef8f71b81206816.jpeg",
     "static/media/IMG_0824.jpeg": "/soniya-interior/static/media/IMG_0824.422e0db059887b0fcb80.jpeg",
     "static/media/IMG_0034.jpeg": "/soniya-interior/static/media/IMG_0034.57f363b162da22dda097.jpeg",
@@ -22,11 +22,11 @@
     "static/media/dining-room-4.jpg": "/soniya-interior/static/media/dining-room-4.3224288a62fe368ed725.jpg",
     "static/media/pooja-room-1.jpg": "/soniya-interior/static/media/pooja-room-1.fd6e4e332e8af878874e.jpg",
     "index.html": "/soniya-interior/index.html",
-    "main.18d298c4.css.map": "/soniya-interior/static/css/main.18d298c4.css.map",
-    "main.b1c12851.js.map": "/soniya-interior/static/js/main.b1c12851.js.map"
+    "main.e0fc3e8a.css.map": "/soniya-interior/static/css/main.e0fc3e8a.css.map",
+    "main.26deae58.js.map": "/soniya-interior/static/js/main.26deae58.js.map"
   },
   "entrypoints": [
-    "static/css/main.18d298c4.css",
-    "static/js/main.b1c12851.js"
+    "static/css/main.e0fc3e8a.css",
+    "static/js/main.26deae58.js"
   ]
 }
