@@ -7,11 +7,11 @@ const Footer = () => {
     <footer className="footer-custom">
       <Container>
         <Row className="align-items-center gy-4">
-			<Col md={2} className="d-none d-md-block">
-				<img src={logoFooter} alt="Sparkle Design Studio" className="footer-logo" />
-			</Col>
-          <Col md={5}>
-			<h3 className="footer-brand">Sparkle Design Studio</h3>
+          <Col md={2} className="footer-logo-col">
+            <img src={logoFooter} alt="Sparkle Design Studio" className="footer-logo" />
+          </Col>
+          <Col md={5} className="footer-brand-col">
+            <h3 className="footer-brand">Sparkle Design Studio</h3>
             <p className="footer-tagline">Crafting warm, livable spaces with timeless materials.</p>
             <div className="footer-social">
               <a href="https://www.instagram.com/sparklebysoniya?igsh=eWpoN2UwZ2ZhcDV4&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-link">
@@ -20,7 +20,7 @@ const Footer = () => {
             </div>
           </Col>
 
-          <Col md={5}>
+          <Col md={5} className="footer-subscribe-col">
             <h6 className="footer-heading">Stay in touch</h6>
             <p className="mb-2">News, occasional design tips, and new projects.</p>
             <Form className="d-flex footer-subscribe" onSubmit={(e)=>e.preventDefault()}>
@@ -31,8 +31,10 @@ const Footer = () => {
         </Row>
 
         <Row className="mt-4 pt-3 align-items-center border-top">
-          <Col md={6} className="small text-muted">© {new Date().getFullYear()} Sparkle Design Studio. All rights reserved.</Col>
-          <Col md={6} className="text-md-end small">
+          <Col md={6} className="small text-muted text-center text-md-start">
+            © {new Date().getFullYear()} Sparkle Design Studio. All rights reserved.
+          </Col>
+          <Col md={6} className="text-center text-md-end small footer-links-col">
             <Link to="/project" className="me-3">Projects</Link>
             <Link to="/contact">Contact</Link>
           </Col>

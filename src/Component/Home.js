@@ -30,24 +30,24 @@ export default function Home() {
         <Container>
           <h3 className="text-center mb-4">Our Services</h3>
           <Row className="g-4">
-            <Col sm={6} md={4}>
-              <Card className="service-card p-3">
+            <Col sm={6} md={4} className="service-col">
+              <Card className="service-card p-md-3">
                 <Card.Body>
                   <Card.Title>Space Planning</Card.Title>
                   <Card.Text>Efficient layouts for better living.</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
-            <Col sm={6} md={4}>
-              <Card className="service-card p-3">
+            <Col sm={6} md={4} className="service-col">
+              <Card className="service-card p-md-3">
                 <Card.Body>
                   <Card.Title>3D Renderings</Card.Title>
                   <Card.Text>Photoreal visuals to preview designs.</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
-            <Col sm={6} md={4}>
-              <Card className="service-card p-3">
+            <Col sm={6} md={4} className="service-col">
+              <Card className="service-card p-md-3">
                 <Card.Body>
                   <Card.Title>Project Management</Card.Title>
                   <Card.Text>From procurement to on-site delivery.</Card.Text>
