@@ -28,11 +28,11 @@ const NavComp = () => {
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/about">
-                About Us
+			<Nav.Link as={Link} to="/project">
+                Portfolio
               </Nav.Link>
-              <Nav.Link as={Link} to="/project">
-                Projects
+              <Nav.Link as={Link} to="/about">
+                About
               </Nav.Link>
               <Nav.Link as={Link} to="/contact">
                 Contact
