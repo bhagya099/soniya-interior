@@ -1,14 +1,54 @@
+import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import emailjs from "@emailjs/browser";
+import emailConfig from "../emailConfig";
 import logoFooter from "../image/logo-footer.png";
 
+const isConfigured = () =>
+  !Object.values(emailConfig).some((v) => String(v).startsWith("YOUR_"));
+
 const Footer = () => {
+  const [subscribeEmail, setSubscribeEmail] = useState("");
+  const [subscribeStatus, setSubscribeStatus] = useState("idle"); // idle | sending | success | error
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!subscribeEmail) return;
+
+    if (!isConfigured()) {
+      setSubscribeStatus("error");
+      return;
+    }
+
+    setSubscribeStatus("sending");
+    try {
+      await emailjs.send(
+        emailConfig.SERVICE_ID,
+        emailConfig.TEMPLATE_ID,
+        {
+          from_name: "Newsletter signup",
+          from_email: subscribeEmail,
+          project_brief: "",
+          message: `New newsletter subscription request from ${subscribeEmail}.`,
+        },
+        { publicKey: emailConfig.PUBLIC_KEY }
+      );
+      setSubscribeStatus("success");
+      setSubscribeEmail("");
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("Newsletter signup failed:", err);
+      setSubscribeStatus("error");
+    }
+  };
+
   return (
     <footer className="footer-custom">
       <Container>
         <Row className="align-items-center gy-4">
           <Col md={2} className="footer-logo-col">
-            <img src={logoFooter} alt="Sparkle Design Studio" className="footer-logo" />
+            <img src={logoFooter} alt="Sparkle Design Studio" className="footer-logo" loading="lazy" />
           </Col>
           <Col md={5} className="footer-brand-col">
             <h3 className="footer-brand">Sparkle Design Studio</h3>
@@ -23,10 +63,27 @@ const Footer = () => {
           <Col md={5} className="footer-subscribe-col">
             <h6 className="footer-heading">Stay in touch</h6>
             <p className="mb-2">News, occasional design tips, and new projects.</p>
-            <Form className="d-flex footer-subscribe" onSubmit={(e)=>e.preventDefault()}>
-              <Form.Control type="email" placeholder="Email address" aria-label="Email" className="me-2" />
-              <Button variant="primary" type="submit">Subscribe</Button>
+            <Form className="d-flex footer-subscribe" onSubmit={handleSubscribe}>
+              <Form.Control
+                type="email"
+                placeholder="Email address"
+                aria-label="Email"
+                className="me-2"
+                value={subscribeEmail}
+                onChange={(e) => setSubscribeEmail(e.target.value)}
+                required
+                disabled={subscribeStatus === "sending"}
+              />
+              <Button variant="primary" type="submit" disabled={subscribeStatus === "sending"}>
+                {subscribeStatus === "sending" ? "Sending…" : "Subscribe"}
+              </Button>
             </Form>
+            {subscribeStatus === "success" && (
+              <p className="small text-success mb-0 mt-2">Thanks for subscribing!</p>
+            )}
+            {subscribeStatus === "error" && (
+              <p className="small text-danger mb-0 mt-2">Something went wrong. Please try again.</p>
+            )}
           </Col>
         </Row>
 

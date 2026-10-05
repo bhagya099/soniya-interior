@@ -15,7 +15,7 @@ const NavComp = () => {
       <Navbar expand="lg" sticky="top" className="shadow-sm mb-1 navbar">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <img src={logo} alt="logo" className="logo" />
+            <img src={logo} alt="Sparkle Design Studio logo" className="logo" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -37,6 +37,7 @@ const ProjectDetail = () => {
                   alt={project.title + " " + (i + 1)}
                   className="img-thumbnail"
                   style={{ height: 80, width: "auto", objectFit: "contain", background: "#efe8dd", cursor: "pointer" }}
+                  loading="lazy"
                   onClick={() => { setLightboxIndex(i); setShowLightbox(true); }}
                 />
               ))}
@@ -54,7 +55,7 @@ const ProjectDetail = () => {
         </Row>
       </Container>
       {showLightbox && (
-        <Lightbox images={project.images || [project.image]} startIndex={lightboxIndex} onClose={() => setShowLightbox(false)} />
+        <Lightbox images={project.images || [project.image]} startIndex={lightboxIndex} title={project.title} onClose={() => setShowLightbox(false)} />
       )}
       <Footer />
     </>

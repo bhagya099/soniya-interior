@@ -42,6 +42,9 @@ const Project = () => {
         <div className="projects-filter" role="tablist" aria-label="Filter by room">
           <button
             type="button"
+            role="tab"
+            aria-selected={activeRoom === "All"}
+            tabIndex={activeRoom === "All" ? 0 : -1}
             className={`room-pill ${activeRoom === "All" ? "active" : ""}`}
             onClick={() => setActiveRoom("All")}
           >
@@ -51,6 +54,9 @@ const Project = () => {
             <button
               key={room}
               type="button"
+              role="tab"
+              aria-selected={activeRoom === room}
+              tabIndex={activeRoom === room ? 0 : -1}
               className={`room-pill ${activeRoom === room ? "active" : ""}`}
               onClick={() => setActiveRoom(room)}
             >
@@ -78,6 +84,7 @@ const Project = () => {
                         src={imgThumb}
                         alt={p.title + " " + (ti + 1)}
                         className="mosaic-thumb"
+                        loading="lazy"
                       />
                     ))}
                   </div>
@@ -115,7 +122,7 @@ const Project = () => {
                       onKeyDown={(e) => (e.key === "Enter" ? openLightbox(activeProject.images, i) : null)}
                     >
                       <div className="portfolio-media">
-                        <img src={img} alt={`${activeProject.title} ${i + 1}`} />
+                        <img src={img} alt={`${activeProject.title} ${i + 1}`} loading="lazy" />
                       </div>
                     </div>
                   ))}
@@ -127,7 +134,7 @@ const Project = () => {
       </Container>
 
       {showLightbox && (
-        <Lightbox images={lightboxImages} startIndex={lightboxIndex} onClose={() => setShowLightbox(false)} />
+        <Lightbox images={lightboxImages} startIndex={lightboxIndex} title={activeProject?.title} onClose={() => setShowLightbox(false)} />
       )}
 
       <Footer />

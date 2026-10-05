@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const Lightbox = ({ images = [], startIndex = 0, onClose }) => {
+const Lightbox = ({ images = [], startIndex = 0, onClose, title = "Project photo" }) => {
   const [index, setIndex] = React.useState(startIndex || 0);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Lightbox = ({ images = [], startIndex = 0, onClose }) => {
         >
           ‹
         </button>
-        <img src={images[index]} alt="" className="lightbox-image" />
+        <img src={images[index]} alt={`${title} ${index + 1} of ${images.length}`} className="lightbox-image" />
         <button
           className="lightbox-nav next"
           onClick={() => setIndex((i) => (i + 1) % images.length)}
