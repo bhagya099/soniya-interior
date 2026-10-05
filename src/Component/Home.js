@@ -58,7 +58,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="featured-projects mt-4 mb-5">
+      <section className="featured-projects mt-4 mb-md-5">
         <Container>
           <h3 className="text-center mb-3">Featured Projects</h3>
           <Row xs={1} sm={2} md={3} className="g-4">

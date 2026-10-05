@@ -245,8 +245,9 @@ a:focus, a:focus-visible {
 @media (max-width: 767.98px) {
   .footer-logo-col, .footer-brand-col, .footer-subscribe-col { text-align: center; margin:0; }
   .footer-logo { width: 72px; margin: 0 auto }
-  .footer-social { justify-content: center }
+  .footer-social { justify-content: center; margin: 20px auto }
   .footer-subscribe { justify-content: center }
+  .footer-subscribe-col { padding-top: 1rem; border-top: 1px solid #dee2e6 }
   .footer-subscribe .form-control { max-width: 220px; flex: 0 1 auto }
   .footer-links-col { margin-top: 0.5rem }
 }
