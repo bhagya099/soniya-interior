@@ -27,8 +27,8 @@ const PROCESS_STEPS = [
 
 // TODO: replace with real client quotes (with their permission) before launch
 const TESTIMONIALS = [
-  { quote: "TODO: client quote about working with Soniya.", name: "TODO first name", city: "TODO city" },
-  { quote: "TODO: second client quote about the finished home.", name: "TODO first name", city: "TODO city" },
+  { quote: "Every corner of our home was thoughtfully designed, making excellent use of the available space while maintaining a modern and elegant look. The quality of materials, craftsmanship, and finishing exceeded our expectations.", name: "Mr. & Mrs. Kulkarni ", city: "Pune" },
+  { quote: "Everyone praises the interior during puja. We are so happy with the end product.", name: "Mr. & Mrs. Deshpande", city: "Pune" },
 ];
 
 // Three rooms for the home grid; skip the hero photo so it isn't shown twice
@@ -65,14 +65,14 @@ export default function Home() {
 
       <section className="process">
         <Container>
-          <div className="text-center mb-5">
+          <div className="text-center mb-5" data-reveal>
             <p className="eyebrow">How we work</p>
             <h2>From first visit to final handover</h2>
           </div>
           <Row as="ol" className="process-steps gx-4 gy-5">
             {PROCESS_STEPS.map((step, i) => (
               <Col as="li" key={step.title} xs={12} md={6} lg={3}>
-                <div className="process-step">
+                <div className="process-step" data-reveal style={{ "--i": i }}>
                   <span className="process-number" aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -87,7 +87,7 @@ export default function Home() {
 
       <section className="featured-projects">
         <Container>
-          <div className="text-center mb-5">
+          <div className="text-center mb-5" data-reveal>
             <p className="eyebrow">Our work</p>
             <h2>Featured Projects</h2>
           </div>
@@ -97,8 +97,10 @@ export default function Home() {
                 key={p.id}
                 to={`/project?room=${p.slug}`}
                 className={`featured-item${i === 0 ? " featured-item--large" : ""}`}
+                data-reveal
+                style={{ "--i": i }}
               >
-                <div className="featured-media">
+                <div className="featured-media img-reveal">
                   <img src={p.cover} alt={`${p.title} designed by Sparkle Design Studio`} loading="lazy" />
                 </div>
                 <div className="featured-caption">
@@ -118,7 +120,7 @@ export default function Home() {
 
       <section className="testimonials">
         <Container>
-          <div className="text-center mb-5">
+          <div className="text-center mb-5" data-reveal>
             <p className="eyebrow">Kind words</p>
             <h2>What our clients say</h2>
           </div>
@@ -142,8 +144,10 @@ export default function Home() {
 
       <section className="cta-band">
         <Container className="text-center">
-          <p className="eyebrow">Start your project</p>
-          <h2>Let's design your space</h2>
+          <div data-reveal>
+            <p className="eyebrow">Start your project</p>
+            <h2>Let's design your space</h2>
+          </div>
           <p className="cta-band-text">
             Tell us about your home and what you'd like to change. We'll take it from there.
           </p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Nav, Container, Navbar } from "react-bootstrap";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import useRevealOnScroll from "../hooks/useRevealOnScroll";
@@ -10,12 +10,24 @@ const NavComp = () => {
   const { pathname } = useLocation();
   useRevealOnScroll(pathname);
 
+  // Home: the bar floats transparent over the hero until the page scrolls 60px
+  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    if (!isHome) return undefined;
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+  const transparent = isHome && !scrolled && !expanded;
+
   return (
     <>
       <Navbar
         expand="lg"
-        sticky="top"
-        className="site-nav"
+        {...(isHome ? { fixed: "top" } : { sticky: "top" })}
+        className={`site-nav${isHome ? " site-nav--overlay" : ""}${transparent ? " is-transparent" : ""}`}
         expanded={expanded}
         onToggle={setExpanded}
       >

@@ -1,101 +1,92 @@
-import { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import emailjs from "@emailjs/browser";
-import emailConfig from "../emailConfig";
-import logoFooter from "../image/logo.png";
+import { Container } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import logo from "../image/logo-trimmed.png";
 
-const isConfigured = () =>
-  !Object.values(emailConfig).some((v) => String(v).startsWith("YOUR_"));
+const PHONE_DISPLAY = "+91 88059 89342";
+const PHONE_TEL = "tel:+918805989342";
+const WHATSAPP_URL = "https://wa.me/918805989342";
+const EMAIL = "sparkledesignstudio7@gmail.com";
+const INSTAGRAM_URL = "https://www.instagram.com/sparklebysoniya?igsh=eWpoN2UwZ2ZhcDV4&utm_source=qr";
+
+const LOCATION = "Pune, India";
+const HOURS = "Mon – Sat, 10am – 7pm";
+
+const Icon = ({ children }) => (
+  <svg className="footer-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {children}
+  </svg>
+);
+
+const InstagramIcon = () => (
+  <Icon>
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <path d="M17.5 6.5h.01" />
+  </Icon>
+);
 
 const Footer = () => {
-  const [subscribeEmail, setSubscribeEmail] = useState("");
-  const [subscribeStatus, setSubscribeStatus] = useState("idle"); // idle | sending | success | error
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    if (!subscribeEmail) return;
-
-    if (!isConfigured()) {
-      setSubscribeStatus("error");
-      return;
-    }
-
-    setSubscribeStatus("sending");
-    try {
-      await emailjs.send(
-        emailConfig.SERVICE_ID,
-        emailConfig.TEMPLATE_ID,
-        {
-          from_name: "Newsletter signup",
-          from_email: subscribeEmail,
-          project_brief: "",
-          message: `New newsletter subscription request from ${subscribeEmail}.`,
-        },
-        { publicKey: emailConfig.PUBLIC_KEY }
-      );
-      setSubscribeStatus("success");
-      setSubscribeEmail("");
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error("Newsletter signup failed:", err);
-      setSubscribeStatus("error");
-    }
-  };
-
   return (
-    <footer className="footer-custom">
+    <footer className="site-footer">
       <Container>
-        <Row className="align-items-center gy-4">
-          <Col md={2} className="footer-logo-col">
-            <img src={logoFooter} alt="Sparkle Design Studio" className="footer-logo" loading="lazy" />
-          </Col>
-          <Col md={5} className="footer-brand-col">
-            <h3 className="footer-brand">Sparkle Design Studio</h3>
+        <div className="footer-grid">
+          <div className="footer-col">
+            <img src={logo} alt="Sparkle Design Studio" className="footer-logo" loading="lazy" />
             <p className="footer-tagline">Crafting warm, livable spaces with timeless materials.</p>
-            <div className="footer-social">
-              <a href="https://www.instagram.com/sparklebysoniya?igsh=eWpoN2UwZ2ZhcDV4&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="social-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/><path d="M17.5 6.5h.01" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </a>
-            </div>
-          </Col>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="footer-social"
+              aria-label="Sparkle Design Studio on Instagram">
+              <InstagramIcon />
+            </a>
+          </div>
 
-          <Col md={5} className="footer-subscribe-col">
-            <h6 className="footer-heading">Stay in touch</h6>
-            <p className="mb-2">News, occasional design tips, and new projects.</p>
-            <Form className="d-flex footer-subscribe" onSubmit={handleSubscribe}>
-              <Form.Control
-                type="email"
-                placeholder="Email address"
-                aria-label="Email"
-                className="me-2"
-                value={subscribeEmail}
-                onChange={(e) => setSubscribeEmail(e.target.value)}
-                required
-                disabled={subscribeStatus === "sending"}
-              />
-              <Button variant="primary" type="submit" disabled={subscribeStatus === "sending"}>
-                {subscribeStatus === "sending" ? "Sending…" : "Subscribe"}
-              </Button>
-            </Form>
-            {subscribeStatus === "success" && (
-              <p className="small text-success mb-0 mt-2">Thanks for subscribing!</p>
-            )}
-            {subscribeStatus === "error" && (
-              <p className="small text-danger mb-0 mt-2">Something went wrong. Please try again.</p>
-            )}
-          </Col>
-        </Row>
+          <nav className="footer-col" aria-label="Footer">
+            <h2 className="footer-heading">Explore</h2>
+            <ul className="footer-list">
+              <li><NavLink to="/project">Projects</NavLink></li>
+              <li><NavLink to="/about">About</NavLink></li>
+              <li><NavLink to="/contact">Contact</NavLink></li>
+            </ul>
+          </nav>
 
-        <Row className="mt-4 pt-3 align-items-center border-top">
-          <Col md={6} className="small text-muted text-center text-md-start">
-            © {new Date().getFullYear()} Sparkle Design Studio. All rights reserved.
-          </Col>
-          <Col md={6} className="text-center text-md-end small footer-links-col">
-            <Link to="/project" className="me-3">Projects</Link>
-            <Link to="/contact">Contact</Link>
-          </Col>
-        </Row>
+          <div className="footer-col">
+            <h2 className="footer-heading">Get in touch</h2>
+            <ul className="footer-list footer-contact">
+              <li>
+                <a href={PHONE_TEL} className="footer-tap">
+                  <Icon><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></Icon>
+                  {PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-tap">
+                  <Icon><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z" /><path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.6c-3.8.4-7.6-3.4-7.2-7.2l1.6-.3.8 1.8L9 9.5z" /></Icon>
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${EMAIL}`} className="footer-email">
+                  <Icon><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></Icon>
+                  {EMAIL}
+                </a>
+              </li>
+              <li className="footer-text">
+                <Icon><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></Icon>
+                {LOCATION}
+              </li>
+            </ul>
+          </div>
+
+          <div className="footer-col">
+            <h2 className="footer-heading">Studio hours</h2>
+            <p className="footer-text">{HOURS}</p>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} Sparkle Design Studio</span>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
       </Container>
     </footer>
   );

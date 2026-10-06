@@ -1,8 +1,11 @@
 import { useLayoutEffect } from "react";
 
+const TARGETS = "[data-reveal], .img-reveal";
+
 /**
- * Fades each <section>'s content up as it scrolls into view.
- * Re-runs when `key` changes (pass the route path) so new pages are picked up.
+ * Reveals [data-reveal] and .img-reveal elements once, as they scroll into view.
+ * Elements added later (e.g. when the Projects filter swaps tiles) are picked up
+ * by a MutationObserver, so nothing is left hidden.
  * Does nothing — content stays visible — for reduced-motion users or browsers
  * without IntersectionObserver. Styles live in portfolio.css (.reveal-ready).
  */
@@ -14,20 +17,35 @@ export default function useRevealOnScroll(key) {
 
     document.documentElement.classList.add("reveal-ready");
 
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+            io.unobserve(entry.target);
           }
         });
       },
-      // threshold 0 so very tall sections (e.g. the projects grid) still trigger
-      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+      // threshold 0 so tall elements still trigger
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
     );
 
-    document.querySelectorAll("section").forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    const observe = (root) => {
+      if (root.matches?.(TARGETS) && !root.classList.contains("is-visible")) io.observe(root);
+      root.querySelectorAll?.(TARGETS).forEach((el) => {
+        if (!el.classList.contains("is-visible")) io.observe(el);
+      });
+    };
+    observe(document.body);
+
+    const mo = new MutationObserver((mutations) => {
+      mutations.forEach((m) => m.addedNodes.forEach((node) => node.nodeType === 1 && observe(node)));
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, [key]);
 }

@@ -16,33 +16,37 @@ const About = () => {
         <Container>
           <Row className="gx-lg-5 gy-5">
             <Col md={5}>
-              <img
-                src={soniyaPhoto}
-                alt="Soniya, lead designer at Sparkle Design Studio"
-                className="about-photo"
-                loading="lazy"
-              />
+              <div className="img-reveal">
+                <img
+                  src={soniyaPhoto}
+                  alt="Soniya, lead designer at Sparkle Design Studio"
+                  className="about-photo"
+                  loading="lazy"
+                />
+              </div>
             </Col>
             <Col md={7} className="about-copy">
-              <p className="eyebrow">The studio</p>
-              <h2>Hello, I'm Soniya.</h2>
-              <p className="about-lead">
+              <div data-reveal style={{ "--i": 0 }}>
+                <p className="eyebrow">The studio</p>
+                <h2>Hello, I'm Soniya.</h2>
+              </div>
+              <p className="about-lead" data-reveal style={{ "--i": 1 }}>
                 I design homes that feel warm, personal and easy to live in.
               </p>
-              <p>
+              <p data-reveal style={{ "--i": 2 }}>
                 At Sparkle Design Studio, I bring together two things I love:
                 the richness of traditional craft and the calm simplicity of
                 modern design. The result is a home that feels rooted, but works
                 for the way you live today.
               </p>
-              <p>
+              <p data-reveal style={{ "--i": 3 }}>
                 I work on residential and commercial projects with a small team,
                 and I stay hands-on from start to finish — from the first
                 conversation and space plan to choosing finishes and checking
                 the last details on site.
               </p>
 
-              <dl className="about-stats">
+              <dl className="about-stats" data-reveal style={{ "--i": 4 }}>
                 {STATS.map((s) => (
                   <div key={s.label} className="about-stat">
                     <dt>{s.label}</dt>
@@ -52,7 +56,7 @@ const About = () => {
               </dl>
 
               {/* TODO: draft quote — confirm wording with Soniya before launch */}
-              <figure className="about-quote">
+              <figure className="about-quote" data-reveal style={{ "--i": 5 }}>
                 <blockquote>
                   <p>
                     A home should feel like you the moment you walk in — not
