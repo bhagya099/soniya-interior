@@ -1,21 +1,27 @@
+import { useState } from "react";
 import { Nav, Container, Navbar } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
-import logo from "../image/logo.png";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import useRevealOnScroll from "../hooks/useRevealOnScroll";
+import logo from "../image/logo-trimmed.png";
 
 const NavComp = () => {
-  const handleLinkClick = () => {
-    const navbarCollapse = document.getElementById("responsive-navbar-nav");
-    if (navbarCollapse && navbarCollapse.classList.contains("show")) {
-      navbarCollapse.classList.remove("show");
-    }
-  };
+  const [expanded, setExpanded] = useState(false);
+  const closeMenu = () => setExpanded(false);
+  const { pathname } = useLocation();
+  useRevealOnScroll(pathname);
 
   return (
     <>
-      <Navbar expand="lg" sticky="top" className="shadow-sm mb-1 navbar">
+      <Navbar
+        expand="lg"
+        sticky="top"
+        className="site-nav"
+        expanded={expanded}
+        onToggle={setExpanded}
+      >
         <Container>
-          <Navbar.Brand as={Link} to="/">
-            <img src={logo} alt="Sparkle Design Studio logo" className="logo" />
+          <Navbar.Brand as={Link} to="/" onClick={closeMenu} aria-label="Sparkle Design Studio — home">
+            <img src={logo} alt="Sparkle Design Studio" className="nav-logo" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -24,17 +30,17 @@ const NavComp = () => {
             className="justify-content-end"
             id="responsive-navbar-nav"
           >
-            <Nav onClick={handleLinkClick}>
-              <Nav.Link as={Link} to="/">
+            <Nav onClick={closeMenu}>
+              <Nav.Link as={NavLink} to="/" end>
                 Home
               </Nav.Link>
-			<Nav.Link as={Link} to="/project">
-                Portfolio
+              <Nav.Link as={NavLink} to="/project">
+                Projects
               </Nav.Link>
-              <Nav.Link as={Link} to="/about">
+              <Nav.Link as={NavLink} to="/about">
                 About
               </Nav.Link>
-              <Nav.Link as={Link} to="/contact">
+              <Nav.Link as={NavLink} to="/contact" className="nav-cta">
                 Contact
               </Nav.Link>
             </Nav>

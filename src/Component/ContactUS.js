@@ -66,6 +66,7 @@ export default function ContactUs() {
         <Container>
           <Row className="mb-4">
             <Col className="text-center">
+              <p className="eyebrow">Start a project</p>
               <h2>Get in touch</h2>
               <p className="text-muted">Tell us about your project and we'll get back within 48 hours.</p>
             </Col>

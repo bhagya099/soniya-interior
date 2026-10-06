@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import emailConfig from "../emailConfig";
-import logoFooter from "../image/logo-footer.png";
+import logoFooter from "../image/logo.png";
 
 const isConfigured = () =>
   !Object.values(emailConfig).some((v) => String(v).startsWith("YOUR_"));

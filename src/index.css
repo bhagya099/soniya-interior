@@ -30,18 +30,6 @@ html {
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 0 15px !important;
-  }
-}
-
-.logo {
-  width: 48px;
-  height: auto;
-
-}
-
 .text-color {
   color: #fff;
 }
@@ -70,8 +58,4 @@ html {
   @media (max-width: 768px) {
     width: 100%;
   }
-}
-
-.nav-link {
-  color: #09361C;
 }

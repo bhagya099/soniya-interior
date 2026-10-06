@@ -31,107 +31,72 @@ const Project = () => {
 
   return (
     <>
-      <section className="projects-hero">
-        <Container className="text-center">
-          <h2>Our Projects</h2>
-          <p className="text-muted">Browse by room — living room, bedroom, kitchen, and more.</p>
-        </Container>
-      </section>
+      <section className="projects">
+        <Container>
+          <header className="projects-header">
+            <p className="eyebrow">Portfolio</p>
+            <h2>Our Projects</h2>
+            <p className="text-muted mb-0">Browse by room — living room, bedroom, kitchen, and more.</p>
+          </header>
 
-      <Container className="mb-5">
-        <div className="projects-filter" role="tablist" aria-label="Filter by room">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeRoom === "All"}
-            tabIndex={activeRoom === "All" ? 0 : -1}
-            className={`room-pill ${activeRoom === "All" ? "active" : ""}`}
-            onClick={() => setActiveRoom("All")}
-          >
-            All Rooms
-          </button>
-          {availableRooms.map((room) => (
-            <button
-              key={room}
-              type="button"
-              role="tab"
-              aria-selected={activeRoom === room}
-              tabIndex={activeRoom === room ? 0 : -1}
-              className={`room-pill ${activeRoom === room ? "active" : ""}`}
-              onClick={() => setActiveRoom(room)}
-            >
-              {room}
-            </button>
-          ))}
-        </div>
-
-        {activeRoom === "All" ? (
-          <div className="portfolio-grid">
-            {projects.map((p) => (
-              <div
-                key={p.id}
-                className="portfolio-item"
-                role="button"
-                tabIndex={0}
-                onClick={() => setActiveRoom(p.room)}
-                onKeyDown={(e) => (e.key === "Enter" ? setActiveRoom(p.room) : null)}
+          <div className="projects-filter" role="group" aria-label="Filter by room">
+            {["All", ...availableRooms].map((room) => (
+              <button
+                key={room}
+                type="button"
+                aria-pressed={activeRoom === room}
+                className={`room-tab${activeRoom === room ? " active" : ""}`}
+                onClick={() => setActiveRoom(room)}
               >
-                <div className="portfolio-media mosaic">
-                  <div className="mosaic-grid" aria-hidden>
-                    {p.images.slice(0, 3).map((imgThumb, ti) => (
-                      <img
-                        key={ti}
-                        src={imgThumb}
-                        alt={p.title + " " + (ti + 1)}
-                        className="mosaic-thumb"
-                        loading="lazy"
-                      />
-                    ))}
-                  </div>
-                  {p.images.length > 1 && (
-                    <span
-                      className="image-count-badge"
-                      title={`This room has ${p.images.length} photos`}
-                    >
-                      +{p.images.length - 1}
-                    </span>
-                  )}
-                  <div className="overlay">
-                    <div className="overlay-text">
-                      <h5>{p.title}</h5>
-                      <small>{p.images.length} photos</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                {room === "All" ? "All Rooms" : room}
+              </button>
             ))}
           </div>
-        ) : (
-          <>
-            {activeProject && (
+
+          {activeRoom === "All" ? (
+            <div className="portfolio-grid">
+              {projects.map((p) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  className="portfolio-item"
+                  onClick={() => setActiveRoom(p.room)}
+                >
+                  <img src={p.image} alt={`${p.title} designed by Sparkle Design Studio`} loading="lazy" />
+                  <span className="portfolio-caption">
+                    <span className="portfolio-title">{p.title}</span>
+                    <span className="portfolio-count">
+                      {p.images.length} {p.images.length === 1 ? "photo" : "photos"}
+                    </span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            activeProject && (
               <>
                 <p className="text-center text-muted mb-4">{activeProject.description}</p>
                 <div className="portfolio-grid">
                   {activeProject.images.map((img, i) => (
-                    <div
-                      key={i}
+                    <button
+                      key={img}
+                      type="button"
                       className="portfolio-item"
-                      role="button"
-                      tabIndex={0}
                       onClick={() => openLightbox(activeProject.images, i)}
-                      onKeyDown={(e) => (e.key === "Enter" ? openLightbox(activeProject.images, i) : null)}
                     >
-                      <div className="portfolio-media">
-                        <img src={img} alt={`${activeProject.title} ${i + 1}`} loading="lazy" />
-                      </div>
-                    </div>
+                      <img
+                        src={img}
+                        alt={`${activeProject.title}, ${i + 1} of ${activeProject.images.length}`}
+                        loading="lazy"
+                      />
+                    </button>
                   ))}
                 </div>
               </>
-            )}
-          </>
-        )}
-      </Container>
+            )
+          )}
+        </Container>
+      </section>
 
       {showLightbox && (
         <Lightbox images={lightboxImages} startIndex={lightboxIndex} title={activeProject?.title} onClose={() => setShowLightbox(false)} />
