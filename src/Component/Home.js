@@ -1,6 +1,7 @@
 import React from "react";
 // IMAGES intentionally removed; featured images come from `src/data/projects.js`
 import Footer from "../Component/Footer";
+import CtaBand from "../Component/CtaBand";
 import projects from "../data/projects";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -27,7 +28,7 @@ const PROCESS_STEPS = [
 
 // TODO: replace with real client quotes (with their permission) before launch
 const TESTIMONIALS = [
-  { quote: "Every corner of our home was thoughtfully designed, making excellent use of the available space while maintaining a modern and elegant look. The quality of materials, craftsmanship, and finishing exceeded our expectations.", name: "Mr. & Mrs. Kulkarni ", city: "Pune" },
+  { quote: "Every corner of our home was thoughtfully designed, making excellent use of the available space while maintaining a modern and elegant look. The quality of materials, craftsmanship, and finishing exceeded our expectations.", name: "Mr. & Mrs. Kulkarni", city: "Pune" },
   { quote: "Everyone praises the interior during puja. We are so happy with the end product.", name: "Mr. & Mrs. Deshpande", city: "Pune" },
 ];
 
@@ -124,7 +125,7 @@ export default function Home() {
             <p className="eyebrow">Kind words</p>
             <h2>What our clients say</h2>
           </div>
-          <Row className="gx-4 gy-5 justify-content-center">
+          <Row className="gx-4 gx-lg-5 gy-5 justify-content-center align-items-start">
             {TESTIMONIALS.map((t, i) => (
               <Col key={i} md={6}>
                 <figure className="testimonial">
@@ -142,20 +143,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="cta-band">
-        <Container className="text-center">
-          <div data-reveal>
-            <p className="eyebrow">Start your project</p>
-            <h2>Let's design your space</h2>
-          </div>
-          <p className="cta-band-text">
-            Tell us about your home and what you'd like to change. We'll take it from there.
-          </p>
-          <Button as={Link} to="/contact" variant="primary">
-            Book a consultation
-          </Button>
-        </Container>
-      </section>
+      <CtaBand />
 
       <Footer />
     </>

@@ -3,8 +3,12 @@ import Footer from "../Component/Footer";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
 import emailConfig from "../emailConfig";
+import contactImage from "../image/contact-image.jpeg";
 
-const initialForm = { from_name: "", from_email: "", project_brief: "", message: "" };
+const WHATSAPP_URL = "https://wa.me/918805989342";
+const PROJECT_TYPES = ["Full home", "Living room", "Kitchen", "Bedroom", "Pooja room", "Other"];
+
+const initialForm = { from_name: "", phone: "", from_email: "", project_type: "", message: "" };
 const isConfigured = () =>
   !Object.values(emailConfig).some((v) => String(v).startsWith("YOUR_"));
 
@@ -42,7 +46,9 @@ export default function ContactUs() {
       await emailjs.send(
         emailConfig.SERVICE_ID,
         emailConfig.TEMPLATE_ID,
-        form,
+        // project_brief keeps the current EmailJS template filled until it's
+        // updated to use {{project_type}}
+        { ...form, project_brief: form.project_type },
         { publicKey: emailConfig.PUBLIC_KEY }
       );
       setStatus("success");
@@ -62,85 +68,112 @@ export default function ContactUs() {
 
   return (
     <>
-      <section className="contact-hero">
+      <section className="contact">
         <Container>
-          <Row className="mb-4">
-            <Col className="text-center" data-reveal>
-              <p className="eyebrow">Start a project</p>
-              <h2>Get in touch</h2>
-              <p className="text-muted">Tell us about your project and we'll get back within 48 hours.</p>
-            </Col>
-          </Row>
-
-          <Row className="g-4">
-            <Col md={5}>
-              <div className="contact-card">
-                <h5>Contact</h5>
-                <p className="mb-1">Email: <a href="mailto:sparkledesignstudio7@gmail.com">sparkledesignstudio7@gmail.com</a></p>
-                <p>Phone: <a href="tel:+918805989342">+91 88059 89342</a></p>
-                <p className="text-muted">Studio: By appointment only</p>
+          <Row className="gx-lg-5 gy-5">
+            <Col lg={5}>
+              <div className="img-reveal">
+                <img
+                  src={contactImage}
+                  alt="Dining room crockery unit designed by Sparkle Design Studio"
+                  className="contact-photo"
+                />
               </div>
             </Col>
-            <Col md={7}>
-              <div className="contact-card">
-                <Form className="contact-form" onSubmit={handleSubmit} noValidate>
-                  {status === "success" && (
-                    <Alert variant="success" onClose={() => setStatus("idle")} dismissible>
-                      Thanks! Your message has been sent — we'll be in touch soon.
-                    </Alert>
-                  )}
-                  {status === "error" && (
-                    <Alert variant="danger" onClose={() => setStatus("idle")} dismissible>
-                      {errorMsg}
-                    </Alert>
-                  )}
-                  <Row>
-                    <Col md={6} className="mb-3">
+            <Col lg={7}>
+              <div className="contact-intro" data-reveal>
+                <p className="eyebrow">Start a project</p>
+                <h2>Get in touch</h2>
+                <p className="text-muted">
+                  Tell us about your home and what you'd like to change. We usually reply within a day.
+                </p>
+              </div>
+
+              <Form className="contact-form" onSubmit={handleSubmit} noValidate>
+                {status === "success" && (
+                  <Alert variant="success" onClose={() => setStatus("idle")} dismissible>
+                    Thanks! Your message has been sent — we'll be in touch soon.
+                  </Alert>
+                )}
+                {status === "error" && (
+                  <Alert variant="danger" onClose={() => setStatus("idle")} dismissible>
+                    {errorMsg}
+                  </Alert>
+                )}
+
+                <Form.Group controlId="contact-name" className="contact-field">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="from_name"
+                    autoComplete="name"
+                    value={form.from_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Row className="gx-4">
+                  <Col sm={6}>
+                    <Form.Group controlId="contact-phone" className="contact-field">
+                      <Form.Label>Phone</Form.Label>
                       <Form.Control
-                        type="text"
-                        name="from_name"
-                        placeholder="Your name"
-                        value={form.from_name}
+                        type="tel"
+                        name="phone"
+                        autoComplete="tel"
+                        value={form.phone}
                         onChange={handleChange}
-                        required
                       />
-                    </Col>
-                    <Col md={6} className="mb-3">
+                    </Form.Group>
+                  </Col>
+                  <Col sm={6}>
+                    <Form.Group controlId="contact-email" className="contact-field">
+                      <Form.Label>Email</Form.Label>
                       <Form.Control
                         type="email"
                         name="from_email"
-                        placeholder="Email"
+                        autoComplete="email"
                         value={form.from_email}
                         onChange={handleChange}
                         required
                       />
-                    </Col>
-                  </Row>
-                  <Form.Control
-                    className="mb-3"
-                    type="text"
-                    name="project_brief"
-                    placeholder="Project brief (one line)"
-                    value={form.project_brief}
-                    onChange={handleChange}
-                  />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Form.Group controlId="contact-project-type" className="contact-field">
+                  <Form.Label>Project type</Form.Label>
+                  <Form.Select name="project_type" value={form.project_type} onChange={handleChange}>
+                    <option value="">Select one</option>
+                    {PROJECT_TYPES.map((t) => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group controlId="contact-message" className="contact-field">
+                  <Form.Label>Message</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={4}
                     name="message"
-                    placeholder="Tell us more about your project"
-                    className="mb-3"
                     value={form.message}
                     onChange={handleChange}
                     required
                   />
-                  <div className="d-flex justify-content-end">
-                    <Button variant="primary" type="submit" disabled={status === "sending"}>
-                      {status === "sending" ? "Sending…" : "Send message"}
-                    </Button>
-                  </div>
-                </Form>
-              </div>
+                </Form.Group>
+
+                <div className="contact-actions">
+                  <Button variant="primary" type="submit" disabled={status === "sending"}>
+                    {status === "sending" ? "Sending…" : "Send message"}
+                  </Button>
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-outline-tan">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z" />
+                      <path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.6c-3.8.4-7.6-3.4-7.2-7.2l1.6-.3.8 1.8L9 9.5z" />
+                    </svg>
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              </Form>
             </Col>
           </Row>
         </Container>

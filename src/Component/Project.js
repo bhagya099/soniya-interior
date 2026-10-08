@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import projects, { ROOMS } from "../data/projects";
 import Footer from "./Footer";
+import CtaBand from "./CtaBand";
 import Lightbox from "./Lightbox";
 
 // Rooms with a single photo don't make a convincing portfolio entry yet
@@ -120,6 +121,7 @@ const Project = () => {
         <Lightbox images={lightboxImages} startIndex={lightboxIndex} title={activeProject?.title} onClose={() => setShowLightbox(false)} />
       )}
 
+      <CtaBand />
       <Footer />
     </>
   );

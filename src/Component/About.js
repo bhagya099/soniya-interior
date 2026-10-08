@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../Component/Footer";
+import CtaBand from "../Component/CtaBand";
 import soniyaPhoto from "../image/Soniya-pic.jpeg";
 
 // TODO: replace with Soniya's real numbers and city before launch
@@ -69,6 +70,7 @@ const About = () => {
           </Row>
         </Container>
       </section>
+      <CtaBand />
       <Footer />
     </>
   );

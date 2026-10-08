@@ -1,6 +1,4 @@
 import { Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import logo from "../image/logo-trimmed.png";
 
 const PHONE_DISPLAY = "+91 88059 89342";
 const PHONE_TEL = "tel:+918805989342";
@@ -32,22 +30,13 @@ const Footer = () => {
       <Container>
         <div className="footer-grid">
           <div className="footer-col">
-            <img src={logo} alt="Sparkle Design Studio" className="footer-logo" loading="lazy" />
+            <p className="footer-wordmark">Sparkle Design Studio</p>
             <p className="footer-tagline">Crafting warm, livable spaces with timeless materials.</p>
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="footer-social"
               aria-label="Sparkle Design Studio on Instagram">
               <InstagramIcon />
             </a>
           </div>
-
-          <nav className="footer-col" aria-label="Footer">
-            <h2 className="footer-heading">Explore</h2>
-            <ul className="footer-list">
-              <li><NavLink to="/project">Projects</NavLink></li>
-              <li><NavLink to="/about">About</NavLink></li>
-              <li><NavLink to="/contact">Contact</NavLink></li>
-            </ul>
-          </nav>
 
           <div className="footer-col">
             <h2 className="footer-heading">Get in touch</h2>
@@ -74,18 +63,16 @@ const Footer = () => {
                 <Icon><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></Icon>
                 {LOCATION}
               </li>
+              <li className="footer-text">
+                <Icon><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></Icon>
+                <span><span className="visually-hidden">Studio hours: </span>{HOURS}</span>
+              </li>
             </ul>
-          </div>
-
-          <div className="footer-col">
-            <h2 className="footer-heading">Studio hours</h2>
-            <p className="footer-text">{HOURS}</p>
           </div>
         </div>
 
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Sparkle Design Studio</span>
-          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
       </Container>
     </footer>

@@ -8,6 +8,7 @@
   --accent: #1E3663;
   --muted: #6B6B6B;
   --brand-900: #1C2B3E;
+  --espresso: #2B2420;        /* dark ground for the CTA band and footer */
   --accent-500: var(--earth); /* decorative tan: borders, rules, large numerals */
   --accent-600: #9A8061;      /* tan for large text — 3.32:1 on cream (AA large) */
   --accent-700: #7F6343;      /* tan for small text — 4.96:1 on cream (AA) */
@@ -22,13 +23,13 @@
   --ease: cubic-bezier(.22, 1, .36, 1);
 
   /* Navbar height (logo + padding + border), used where the bar overlays the hero */
-  --nav-h: 79px;
+  --nav-h: 89px;
 }
 @media (max-width: 768px) {
   :root { --section-pad: 56px; }
 }
 @media (max-width: 991.98px) {
-  :root { --nav-h: 77px; }
+  :root { --nav-h: 81px; }
 }
 
 body {
@@ -137,18 +138,17 @@ a:hover { color: var(--accent-700); }
 }
 .site-nav .navbar-toggler:focus-visible { outline: 2px solid var(--brand-900); outline-offset: 3px; }
 .site-nav .navbar-brand { padding: 0; margin-right: 0; }
-/* logo.png is 500×750 with the artwork in a 296×394 box (x 101, y 176).
-   Size by the artwork height (--logo-h) and pull in the transparent padding
-   with negative margins; the brand link clips the overflow. */
+/* logo-trimmed.png is cropped to the artwork, so its height is the logo's
+   height. Changing it changes the bar height: update --nav-h to match. */
 .site-nav .navbar-brand { display: block; overflow: hidden; }
 .nav-logo {
   display: block;
-  height: 54px;
+  height: 64px;
   width: auto;
   margin: 0;
 }
 @media (max-width: 991.98px) {
-  .nav-logo { height: 52px; }
+  .nav-logo { height: 56px; }
 }
 
 .site-nav .nav-link {
@@ -309,7 +309,82 @@ a:hover { color: var(--accent-700); }
   .about-stat dd { font-size: 1.7rem; }
 }
 
-.contact-card { background:#fff; padding:1.25rem; border-radius:8px }
+/* Contact page: tall photo beside an underline-only form, straight on cream */
+.contact-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: scale 1.4s var(--ease);
+}
+.contact-intro { margin-bottom: 2.5rem; }
+.contact-intro h2 { margin-bottom: 1rem; }
+.contact-intro p { max-width: 32rem; margin-bottom: 0; }
+
+.contact-field { margin-bottom: 2rem; }
+.contact-field .form-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+  margin-bottom: 0.25rem;
+}
+.contact-form .form-control,
+.contact-form .form-select {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(28, 43, 62, 0.45);
+  border-radius: 0;
+  padding: 0.6rem 0;
+  font-size: 1rem;
+  color: var(--brand-900);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.contact-form .form-select { padding-right: 2rem; background-position: right 0 center; }
+.contact-form textarea.form-control { resize: vertical; min-height: 7rem; }
+/* tan underline, doubled to 2px so the focus state is easy to see */
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  background-color: transparent;
+  border-bottom-color: var(--accent-500);
+  box-shadow: 0 1px 0 var(--accent-500);
+  outline: none;
+}
+
+.contact-form .alert { border-radius: 2px; margin-bottom: 2rem; }
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+/* Secondary button: tan outline that fills on hover, like the nav's Contact */
+.btn-outline-tan {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--brand-900);
+  border: 1px solid var(--accent-500);
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.btn-outline-tan:hover,
+.btn-outline-tan:active {
+  background: var(--accent-500);
+  border-color: var(--accent-500);
+  color: var(--brand-900);
+}
+
+@media (max-width: 991.98px) {
+  .contact-photo { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 575.98px) {
+  .contact-actions { align-items: stretch; }
+  .contact-actions .btn { justify-content: center; }
+}
 
 .container { max-width:1100px }
 
@@ -377,7 +452,9 @@ a:hover { color: var(--accent-700); }
 .hero-link:hover span { transform: translateX(4px); }
 .hero-link:focus-visible { outline-color: #fff; }
 
-/* Home: "How we work" process strip */
+/* Home: "How we work" process strip, on a deeper sand than the page */
+.process { background: #EBE2D6; }
+.process .eyebrow { color: #785C3E; } /* --accent-700 is 4.35:1 here; this is 4.82:1 */
 .process-steps { list-style: none; padding: 0; margin-bottom: 0; }
 .process-step { border-top: 1px solid var(--accent-500); padding-top: 1.5rem; }
 .process-number {
@@ -478,7 +555,7 @@ a:hover { color: var(--accent-700); }
 }
 
 /* Home: testimonials */
-.testimonial { margin: 0; text-align: center; }
+.testimonial { margin: 0; text-align: left; }
 .testimonial-mark {
   display: block;
   font-family: var(--font-heading);
@@ -491,9 +568,12 @@ a:hover { color: var(--accent-700); }
 .testimonial blockquote p {
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: clamp(1.6rem, 1.3rem + 1.1vw, 2.2rem);
-  line-height: 1.25;
+  font-size: 1.4rem;
+  line-height: 1.4;
   margin: 0;
+}
+@media (max-width: 767.98px) {
+  .testimonial blockquote p { font-size: 1.2rem; }
 }
 .testimonial figcaption {
   font-size: 0.75rem;
@@ -503,12 +583,22 @@ a:hover { color: var(--accent-700); }
   color: var(--accent-700);
 }
 
-/* Home: closing call-to-action band */
-.cta-band { background: var(--brand-900); color: #fff; }
-.cta-band .eyebrow { color: var(--accent-500); } /* 6.2:1 on navy */
-.cta-band h2 { color: #fff; margin-bottom: 1rem; }
+/* Closing call-to-action band: room photo (set as --cta-image in CtaBand.js)
+   under an espresso wash (--espresso at 85%), so the footer below grows out
+   of the imagery */
+.cta-band {
+  background:
+    linear-gradient(rgba(43,36,32,0.85), rgba(43,36,32,0.85)),
+    var(--cta-image, none) center / cover no-repeat,
+    var(--espresso);
+  color: #F5EFE7;
+}
+/* lighter than the footer's #C2A47E labels, which drop to 4.0:1 over the
+   photo's brightest areas; this stays 4.5:1+ */
+.cta-band .eyebrow { color: #DBC8AD; }
+.cta-band h2 { color: #F5EFE7; margin-bottom: 1rem; }
 .cta-band-text {
-  color: rgba(255,255,255,0.85);
+  color: rgba(245,239,231,0.7);
   max-width: 34rem;
   margin: 0 auto 2rem;
 }
@@ -526,40 +616,50 @@ a:hover { color: var(--accent-700); }
 .text-link:hover { color: var(--brand-900); text-decoration: underline; text-underline-offset: 0.4em; }
 .text-link:hover span { transform: translateX(4px); }
 
-/* Footer: deep navy, continuous with the closing CTA band above it */
+/* Footer: espresso, continuous with the closing CTA band above it */
 .site-footer {
-  background: var(--brand-900);
-  color: rgba(255,255,255,0.7);
+  background: var(--espresso);
+  color: rgba(245,239,231,0.7);
   padding: 80px 0 0;
   font-size: 0.95rem;
+  border-top: 1px solid rgba(191, 167, 138, 0.3); /* --earth at 30% */
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1.5fr 1fr;
-  gap: 2.5rem;
+  /* two columns pushed to the edges, the space between them grows with the page */
+  grid-template-columns: minmax(0, 22rem) auto;
+  justify-content: space-between;
+  gap: 4rem;
   padding-bottom: 64px;
 }
-.footer-logo { display: block; height: 70px; width: auto; margin-bottom: 1.25rem; }
-.footer-tagline { max-width: 18rem; margin-bottom: 1.25rem; }
+.footer-wordmark {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  color: #F5EFE7;
+  margin-bottom: 0.6rem;
+}
+.footer-tagline { max-width: 18rem; margin-bottom: 1.25rem; color: rgba(245, 239, 231, 0.7); }
 .footer-heading {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent-500); /* 6.2:1 on navy */
+  color: #C2A47E; /* 6.5:1 on espresso */
   margin-bottom: 1.25rem;
 }
 .footer-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
 
 .site-footer a {
-  color: rgba(255,255,255,0.7);
+  color: rgba(245,239,231,0.7);
   text-decoration: none;
   transition: color .2s ease;
 }
 .site-footer a:hover,
-.site-footer a.active { color: #fff; }
-.site-footer a:focus-visible { outline-color: #fff; }
+.site-footer a.active { color: #F5EFE7; }
+.site-footer a:focus-visible { outline-color: #F5EFE7; }
 
 .footer-contact a,
 .footer-contact .footer-text { display: inline-flex; align-items: center; gap: 0.65rem; }
@@ -573,10 +673,10 @@ a:hover { color: var(--accent-700); }
   justify-content: center;
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(245,239,231,0.25);
   border-radius: 50%;
 }
-.site-footer .footer-social:hover { border-color: #fff; }
+.site-footer .footer-social:hover { border-color: #F5EFE7; }
 
 .footer-bottom {
   display: flex;
@@ -584,31 +684,28 @@ a:hover { color: var(--accent-700); }
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
   padding: 1.5rem 0 2rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(245,239,231,0.12);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-@media (max-width: 991.98px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
 @media (max-width: 767.98px) {
   .site-footer { padding-top: 56px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 48px; }
+  .site-footer .container { padding-inline: 24px; }
+  .footer-grid { grid-template-columns: 1fr; justify-content: stretch; gap: 32px; padding-bottom: 48px; }
   /* Phone and WhatsApp as big tappable rows */
   .footer-contact { gap: 0.5rem; }
   .footer-contact .footer-tap {
     display: flex;
     min-height: 48px;
     padding: 0 1rem;
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 1px solid rgba(245,239,231,0.12);
     border-radius: 2px;
-    color: #fff;
     font-size: 1rem;
   }
-  .footer-contact .footer-tap .footer-icon { width: 20px; height: 20px; color: var(--accent-500); }
+  .footer-contact .footer-tap .footer-icon { width: 20px; height: 20px; color: #C2A47E; }
   .footer-contact .footer-email,
   .footer-contact .footer-text { min-height: 44px; }
   .footer-social { width: 44px; height: 44px; }

@@ -10,7 +10,9 @@
  *    Copy the "Service ID" it gives you into SERVICE_ID below.
  * 3. Email Templates -> Create New Template. Use these variable names in
  *    the template body so they match the form fields sent below:
- *      {{from_name}}, {{from_email}}, {{project_brief}}, {{message}}
+ *      {{from_name}}, {{phone}}, {{from_email}}, {{project_type}}, {{message}}
+ *    ({{project_brief}} is also sent, holding the project type, so older
+ *    templates keep working.)
  *    Set the "To email" field in the template to your own address
  *    (emial@gmail.com). Copy the "Template ID" into TEMPLATE_ID.
  * 4. Account -> General -> copy your "Public Key" into PUBLIC_KEY.

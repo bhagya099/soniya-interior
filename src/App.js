@@ -4,11 +4,13 @@ import ContactUs from "./Component/ContactUS";
 import Project from "./Component/Project";
 import Home from "./Component/Home";
 import ProjectDetail from "./Component/ProjectDetail";
+import ScrollToTop from "./Component/ScrollToTop";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<NavComp />}>
           <Route index element={<Home />} />

@@ -9,6 +9,8 @@ const NavComp = () => {
   const closeMenu = () => setExpanded(false);
   const { pathname } = useLocation();
   useRevealOnScroll(pathname);
+  // Also close on any route change (e.g. the back button), not just menu clicks
+  useEffect(() => setExpanded(false), [pathname]);
 
   // Home: the bar floats transparent over the hero until the page scrolls 60px
   const isHome = pathname === "/";
