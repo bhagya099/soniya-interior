@@ -1,10 +1,18 @@
 {
   "files": {
-    "main.css": "/soniya-interior/static/css/main.df8eb60d.css",
-    "main.js": "/soniya-interior/static/js/main.e31e1c50.js",
+    "main.css": "/soniya-interior/static/css/main.a0fb0a8c.css",
+    "main.js": "/soniya-interior/static/js/main.ccfd5954.js",
+    "static/media/IMG_2493.jpeg": "/soniya-interior/static/media/IMG_2493.4c74e28ccf27f0533c67.jpeg",
+    "static/media/IMG_2494.jpeg": "/soniya-interior/static/media/IMG_2494.3e45220b0cad29ed4576.jpeg",
+    "static/media/contact-image.jpeg": "/soniya-interior/static/media/contact-image.94dee4e25feb6a990704.jpeg",
+    "static/media/IMG_0047.jpeg": "/soniya-interior/static/media/IMG_0047.1de0ff6ed788e699fc7b.jpeg",
+    "static/media/Dining-image-01.jpeg": "/soniya-interior/static/media/Dining-image-01.f37a3c0905cb9a643688.jpeg",
+    "static/media/IMG_6076.jpeg": "/soniya-interior/static/media/IMG_6076.23ac92f877d14da61190.jpeg",
+    "static/media/IMG_6080.jpeg": "/soniya-interior/static/media/IMG_6080.051956fbd3394b5b429e.jpeg",
+    "static/media/bedroom-3.png": "/soniya-interior/static/media/bedroom-3.8aa26f9e876b1ec52228.png",
+    "static/media/bedroom-1.png": "/soniya-interior/static/media/bedroom-1.6353ddc3d6f39010d07d.png",
     "static/media/living-room-1.jpeg": "/soniya-interior/static/media/living-room-1.6ec92e0b0d78f36de6c8.jpeg",
     "static/media/living-room-3.jpeg": "/soniya-interior/static/media/living-room-3.ff6804e8fc126694a5cb.jpeg",
-    "static/media/bedroom-4.jpeg": "/soniya-interior/static/media/bedroom-4.714acef2a83121109279.jpeg",
     "static/media/living-room-6.jpeg": "/soniya-interior/static/media/living-room-6.de12816003861ff5ed97.jpeg",
     "static/media/living-room-2.jpeg": "/soniya-interior/static/media/living-room-2.b5589b14a1ff7275761e.jpeg",
     "static/media/home-office-1.jpeg": "/soniya-interior/static/media/home-office-1.ebcead58967205be510b.jpeg",
@@ -12,20 +20,21 @@
     "static/media/dining-room-1.jpeg": "/soniya-interior/static/media/dining-room-1.4dd25850aceff0a47bc5.jpeg",
     "static/media/Soniya-pic.jpeg": "/soniya-interior/static/media/Soniya-pic.9dd68bd7c73e8b1c37f7.jpeg",
     "static/media/living-room-13.jpeg": "/soniya-interior/static/media/living-room-13.1fe7cf336b391f7ec343.jpeg",
-    "static/media/bedroom-1.jpeg": "/soniya-interior/static/media/bedroom-1.c8b5fe7260685245664b.jpeg",
+    "static/media/bedroom-9.jpeg": "/soniya-interior/static/media/bedroom-9.c8b5fe7260685245664b.jpeg",
     "static/media/IMG_0826.jpeg": "/soniya-interior/static/media/IMG_0826.ce15a20792b5aa61a592.jpeg",
     "static/media/IMG_0034.jpeg": "/soniya-interior/static/media/IMG_0034.f736ecdace80511c38bd.jpeg",
     "static/media/IMG_0824.jpeg": "/soniya-interior/static/media/IMG_0824.d85311cf19621ff485a7.jpeg",
+    "static/media/living.jpeg": "/soniya-interior/static/media/living.978431072ec884539f0c.jpeg",
     "static/media/dining-room-4.jpg": "/soniya-interior/static/media/dining-room-4.3eeb431c81f046258dad.jpg",
     "static/media/pooja-room-1.jpg": "/soniya-interior/static/media/pooja-room-1.6a37448fccde4de365b0.jpg",
     "static/media/bedroom-7.jpg": "/soniya-interior/static/media/bedroom-7.4696ed401561d3f4d282.jpg",
     "static/media/logo-trimmed.png": "/soniya-interior/static/media/logo-trimmed.56cc694ac40135adbf54.png",
     "index.html": "/soniya-interior/index.html",
-    "main.df8eb60d.css.map": "/soniya-interior/static/css/main.df8eb60d.css.map",
-    "main.e31e1c50.js.map": "/soniya-interior/static/js/main.e31e1c50.js.map"
+    "main.a0fb0a8c.css.map": "/soniya-interior/static/css/main.a0fb0a8c.css.map",
+    "main.ccfd5954.js.map": "/soniya-interior/static/js/main.ccfd5954.js.map"
   },
   "entrypoints": [
-    "static/css/main.df8eb60d.css",
-    "static/js/main.e31e1c50.js"
+    "static/css/main.a0fb0a8c.css",
+    "static/js/main.ccfd5954.js"
   ]
 }
