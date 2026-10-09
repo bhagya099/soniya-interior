@@ -1,7 +1,14 @@
 {
   "files": {
-    "main.css": "/soniya-interior/static/css/main.3a0a0bf9.css",
-    "main.js": "/soniya-interior/static/js/main.e6264019.js",
+    "main.css": "/soniya-interior/static/css/main.64446caf.css",
+    "main.js": "/soniya-interior/static/js/main.fdf26e00.js",
+    "static/js/564.5e8d9b2f.chunk.js": "/soniya-interior/static/js/564.5e8d9b2f.chunk.js",
+    "static/js/232.ea251dc2.chunk.js": "/soniya-interior/static/js/232.ea251dc2.chunk.js",
+    "static/js/345.c47a0fa0.chunk.js": "/soniya-interior/static/js/345.c47a0fa0.chunk.js",
+    "static/js/532.722c6acc.chunk.js": "/soniya-interior/static/js/532.722c6acc.chunk.js",
+    "static/css/440.0b1e6383.chunk.css": "/soniya-interior/static/css/440.0b1e6383.chunk.css",
+    "static/js/440.addb67a7.chunk.js": "/soniya-interior/static/js/440.addb67a7.chunk.js",
+    "static/js/832.5f53b1ac.chunk.js": "/soniya-interior/static/js/832.5f53b1ac.chunk.js",
     "static/media/living-room-1.jpeg": "/soniya-interior/static/media/living-room-1.caeb286d0f340161688e.jpeg",
     "static/media/living-room-3.jpeg": "/soniya-interior/static/media/living-room-3.116ca3f13b400007ae3d.jpeg",
     "static/media/living-room-6.jpeg": "/soniya-interior/static/media/living-room-6.06851edbb862ec9869de.jpeg",
@@ -32,7 +39,7 @@
     "index.html": "/soniya-interior/index.html"
   },
   "entrypoints": [
-    "static/css/main.3a0a0bf9.css",
-    "static/js/main.e6264019.js"
+    "static/css/main.64446caf.css",
+    "static/js/main.fdf26e00.js"
   ]
 }
