@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import emailConfig from "../emailConfig";
 import contactImage from "../image/contact-image.jpeg";
 
-const WHATSAPP_URL = "https://wa.me/918805989342";
+const WHATSAPP_URL = "https://wa.me/918805989343";
 const PROJECT_TYPES = ["Full home", "Living room", "Kitchen", "Bedroom", "Pooja room", "Other"];
 
 const initialForm = { from_name: "", phone: "", from_email: "", project_type: "", message: "" };
