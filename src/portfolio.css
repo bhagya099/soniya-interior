@@ -1,7 +1,5 @@
 /* Portfolio custom styles */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
-
 :root {
   --cream: #F6F1EA;
   --earth: #BFA78A;
@@ -476,6 +474,9 @@ a:hover { color: var(--accent-700); }
 .hero-link:hover span { transform: translateX(4px); }
 .hero-link:focus-visible { outline-color: #fff; }
 
+/* Shown while a lazy page's code loads: just the page background */
+.page-fallback { min-height: 100vh; background: var(--cream); }
+
 /* Home: "How we work" process strip, on a deeper sand than the page */
 .process { background: #EBE2D6; }
 .process .eyebrow { color: #785C3E; } /* --accent-700 is 4.35:1 here; this is 4.82:1 */
@@ -580,6 +581,8 @@ a:hover { color: var(--accent-700); }
 
 /* Home: testimonials slider, one centred quote at a time */
 .testimonial-slider { max-width: 760px; margin: 0 auto; }
+/* holds roughly the slider's space while its chunk loads */
+.testimonial-slider--loading { min-height: 18rem; }
 /* Every slide stretches to the tallest one, so the area always fits the
    longest quote and the page doesn't jump between slides */
 .testimonial-slider .swiper-slide { height: auto; display: flex; align-items: center; justify-content: center; }

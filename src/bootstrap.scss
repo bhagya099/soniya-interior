@@ -1,0 +1,32 @@
+// Only the parts of Bootstrap the site uses, instead of all of bootstrap.min.css.
+// If a new react-bootstrap component looks unstyled, add its partial below
+// (they live in node_modules/bootstrap/scss/).
+
+// Required: settings and helpers, output no CSS on their own
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Base
+@import "bootstrap/scss/root";      // --bs-* custom properties the components read
+@import "bootstrap/scss/reboot";
+
+// Layout
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/images";    // img-fluid, img-thumbnail (project detail page)
+
+// Components
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/transitions"; // the navbar's collapse animation
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/alert";     // contact form success/error messages
+@import "bootstrap/scss/close";     // the alerts' dismiss button
+
+// Helpers and utility classes (d-flex, mb-3, text-center, visually-hidden, ...)
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Nav, Container, Navbar } from "react-bootstrap";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import useRevealOnScroll from "../hooks/useRevealOnScroll";
@@ -62,7 +62,10 @@ const NavComp = () => {
         </Container>
       </Navbar>
 
-      <Outlet />
+      {/* Lazy pages: plain cream while a page's code loads, no spinner */}
+      <Suspense fallback={<div className="page-fallback" aria-hidden="true" />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

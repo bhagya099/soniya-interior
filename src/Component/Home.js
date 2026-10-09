@@ -1,12 +1,14 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 // IMAGES intentionally removed; featured images come from `src/data/projects.js`
 import Footer from "../Component/Footer";
 import CtaBand from "../Component/CtaBand";
-import TestimonialSlider from "../Component/TestimonialSlider";
 import projects from "../data/projects";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import heroImage from "../image/rooms/living-room/IMG_0034.jpeg";
+
+// Swiper (JS and CSS) only loads with this chunk, not in the initial bundle
+const TestimonialSlider = lazy(() => import("../Component/TestimonialSlider"));
 
 const PROCESS_STEPS = [
   {
@@ -120,7 +122,9 @@ export default function Home() {
             <p className="eyebrow">Testimonial</p>
             <h2>What our clients say</h2>
           </div>
-          <TestimonialSlider />
+          <Suspense fallback={<div className="testimonial-slider testimonial-slider--loading" aria-hidden="true" />}>
+            <TestimonialSlider />
+          </Suspense>
         </Container>
       </section>
 
