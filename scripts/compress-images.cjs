@@ -10,6 +10,9 @@
  * - Logos (any file with "logo" in its name) stay PNG with transparency.
  * - Files that are already optimised are skipped, so running it on every
  *   build never re-compresses (and never degrades) the same photo twice.
+ * - Also writes the Home hero into public/ (hero-mobile.jpg, hero-desktop.jpg)
+ *   so index.html can preload it by a fixed URL. They're regenerated only when
+ *   missing or older than the source photo, which stays in rooms/ for the gallery.
  */
 const fs = require("fs");
 const path = require("path");
@@ -20,6 +23,13 @@ const MAX_SIDE = 1800;
 const PHOTO_TARGET = 450 * 1024;
 const LOGO_MAX_WIDTH = 600;
 const LOGO_TARGET = 150 * 1024;
+
+const HERO_SOURCE = path.join(ROOT, "rooms", "living-room", "IMG_0034.jpeg");
+const PUBLIC = path.join(__dirname, "..", "public");
+const HERO_OUTPUTS = [
+  { file: "hero-mobile.jpg", width: 900, quality: 72 },
+  { file: "hero-desktop.jpg", width: null, quality: 78 }, // source size, capped at MAX_SIDE
+];
 
 function walk(dir) {
   const out = [];
@@ -73,6 +83,26 @@ async function compressLogo(file) {
   return { file, before, after: out.length, size: `${meta.width}x${meta.height}` };
 }
 
+async function writeHeroFiles() {
+  const sourceTime = fs.statSync(HERO_SOURCE).mtimeMs;
+  const written = [];
+  for (const { file, width, quality } of HERO_OUTPUTS) {
+    const target = path.join(PUBLIC, file);
+    if (fs.existsSync(target) && fs.statSync(target).mtimeMs >= sourceTime) continue;
+
+    const resize = width
+      ? { width, withoutEnlargement: true }
+      : { width: MAX_SIDE, height: MAX_SIDE, fit: "inside", withoutEnlargement: true };
+    const info = await sharp(fs.readFileSync(HERO_SOURCE))
+      .rotate()
+      .resize(resize)
+      .jpeg({ quality, mozjpeg: true, progressive: true })
+      .toFile(target);
+    written.push(`✓ public/${file}: ${info.width}x${info.height}, ${kb(info.size)}`);
+  }
+  return written;
+}
+
 (async () => {
   const results = [];
   let failed = 0;
@@ -85,6 +115,14 @@ async function compressLogo(file) {
       failed++;
       console.error(`✗ ${path.relative(ROOT, file)}: ${err.message}`);
     }
+  }
+
+  try {
+    const heroes = await writeHeroFiles();
+    console.log(heroes.length ? heroes.join("\n") : "Hero: public/hero-*.jpg up to date.");
+  } catch (err) {
+    failed++;
+    console.error(`✗ hero: ${err.message}`);
   }
 
   if (!results.length) {

@@ -5,7 +5,12 @@ import CtaBand from "../Component/CtaBand";
 import projects from "../data/projects";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import heroImage from "../image/rooms/living-room/IMG_0034.jpeg";
+// The gallery copy of the hero photo, imported only so the featured grid can skip it.
+// The hero itself is served from public/ (hero-*.jpg, made by compress-images)
+// so index.html can preload it before the JS runs.
+import heroGalleryImage from "../image/rooms/living-room/IMG_0034.jpeg";
+
+const BASE = import.meta.env.BASE_URL;
 
 // Swiper (JS and CSS) only loads with this chunk, not in the initial bundle
 const TestimonialSlider = lazy(() => import("../Component/TestimonialSlider"));
@@ -32,13 +37,22 @@ const PROCESS_STEPS = [
 // Three rooms for the home grid; skip the hero photo so it isn't shown twice
 const FEATURED = projects.slice(0, 3).map((p) => ({
   ...p,
-  cover: p.images.find((src) => src !== heroImage) || p.image,
+  cover: p.images.find((src) => src !== heroGalleryImage) || p.image,
 }));
 
 export default function Home() {
   return (
     <>
-      <section className="hero" style={{ backgroundImage: `url(${heroImage})` }}>
+      <section className="hero">
+        <img
+          className="hero-img"
+          src={`${BASE}hero-desktop.jpg`}
+          srcSet={`${BASE}hero-mobile.jpg 900w, ${BASE}hero-desktop.jpg 1800w`}
+          sizes="100vw"
+          fetchPriority="high"
+          decoding="async"
+          alt=""
+        />
         <Container>
           <Row>
             <Col lg={7} className="hero-copy">

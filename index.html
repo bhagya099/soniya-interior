@@ -10,6 +10,12 @@
   <link rel="apple-touch-icon" href="/logo-fill.png" />
   <link rel="manifest" href="/manifest.json" />
 
+  <!-- Home hero: fetched straight away, not after the JS has run -->
+  <link rel="preload" as="image"
+    href="%BASE_URL%hero-desktop.jpg"
+    imagesrcset="%BASE_URL%hero-mobile.jpg 900w, %BASE_URL%hero-desktop.jpg 1800w"
+    imagesizes="100vw" fetchpriority="high" />
+
   <!-- Fonts: only the weights the CSS uses. Cormorant Garamond 300/400/500/600
        + italic 400, Manrope 400/500/600 -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
