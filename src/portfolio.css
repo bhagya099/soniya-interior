@@ -23,13 +23,13 @@
   --ease: cubic-bezier(.22, 1, .36, 1);
 
   /* Navbar height (logo + padding + border), used where the bar overlays the hero */
-  --nav-h: 89px;
+  --nav-h: 73px;
 }
 @media (max-width: 768px) {
   :root { --section-pad: 56px; }
 }
 @media (max-width: 991.98px) {
-  :root { --nav-h: 81px; }
+  :root { --nav-h: 69px; }
 }
 
 body {
@@ -138,17 +138,33 @@ a:hover { color: var(--accent-700); }
 }
 .site-nav .navbar-toggler:focus-visible { outline: 2px solid var(--brand-900); outline-offset: 3px; }
 .site-nav .navbar-brand { padding: 0; margin-right: 0; }
-/* logo-trimmed.png is cropped to the artwork, so its height is the logo's
-   height. Changing it changes the bar height: update --nav-h to match. */
-.site-nav .navbar-brand { display: block; overflow: hidden; }
+/* Brand: the S mark (logo-mark.png, cropped to the artwork) with the studio
+   name beside it. The mark's height sets the bar height: update --nav-h to match. */
+.site-nav .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--brand-900);
+  text-decoration: none;
+}
 .nav-logo {
   display: block;
-  height: 64px;
+  height: 48px;
   width: auto;
   margin: 0;
 }
+.nav-wordmark {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+.site-nav.is-transparent .navbar-brand { color: #fff; }
 @media (max-width: 991.98px) {
-  .nav-logo { height: 56px; }
+  .site-nav .navbar-brand { gap: 0.6rem; }
+  .nav-logo { height: 44px; }
+  .nav-wordmark { font-size: 1.3rem; }
 }
 
 .site-nav .nav-link {
@@ -354,13 +370,22 @@ a:hover { color: var(--accent-700); }
 
 .contact-form .alert { border-radius: 2px; margin-bottom: 2rem; }
 
+/* Side by side at the same height; stacked full width on phones */
 .contact-actions {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: stretch;
   gap: 1rem;
   margin-top: 2.5rem;
 }
+.contact-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid transparent; /* same box as the outlined WhatsApp button */
+}
+.contact-actions .btn-outline-tan { border-color: var(--accent-500); }
 /* Secondary button: tan outline that fills on hover, like the nav's Contact */
 .btn-outline-tan {
   display: inline-flex;
@@ -382,8 +407,7 @@ a:hover { color: var(--accent-700); }
   .contact-photo { aspect-ratio: 16 / 10; }
 }
 @media (max-width: 575.98px) {
-  .contact-actions { align-items: stretch; }
-  .contact-actions .btn { justify-content: center; }
+  .contact-actions { flex-direction: column; }
 }
 
 .container { max-width:1100px }
@@ -554,8 +578,12 @@ a:hover { color: var(--accent-700); }
   .featured-item:hover .featured-media img { transform: none; }
 }
 
-/* Home: testimonials */
-.testimonial { margin: 0; text-align: left; }
+/* Home: testimonials slider, one centred quote at a time */
+.testimonial-slider { max-width: 760px; margin: 0 auto; }
+/* Every slide stretches to the tallest one, so the area always fits the
+   longest quote and the page doesn't jump between slides */
+.testimonial-slider .swiper-slide { height: auto; display: flex; align-items: center; justify-content: center; }
+.testimonial { margin: 0; text-align: center; }
 .testimonial-mark {
   display: block;
   font-family: var(--font-heading);
@@ -568,18 +596,52 @@ a:hover { color: var(--accent-700); }
 .testimonial blockquote p {
   font-family: var(--font-heading);
   font-style: italic;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 1.4;
   margin: 0;
 }
 @media (max-width: 767.98px) {
-  .testimonial blockquote p { font-size: 1.2rem; }
+  .testimonial blockquote p { font-size: 1.25rem; }
 }
 .testimonial figcaption {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--accent-700);
+}
+
+/* ← 1 / 5 → under the quote */
+.testimonial-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 2.25rem;
+}
+.testimonial-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  color: var(--espresso);
+  border: 1px solid var(--accent-500);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+.testimonial-arrow:hover { background: var(--accent-500); }
+.testimonial-arrow:focus-visible { outline: 2px solid var(--brand-900); outline-offset: 3px; }
+.testimonial-count {
+  min-width: 3.5em;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  font-variant-numeric: tabular-nums;
   color: var(--accent-700);
 }
 
@@ -814,22 +876,78 @@ a:hover { color: var(--accent-700); }
   .portfolio-item:hover img { transform: none; }
 }
 
-/* Lightbox styles */
 .lightbox-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6,8,15,0.8);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  background: rgba(20, 16, 13, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1050;
+  padding: 64px 72px;
 }
-.lightbox-content { position: relative; max-width: 1100px; width: 95%; }
-.lightbox-image { width: 100%; height: auto; display:block; border-radius:6px }
-.lightbox-close { position:absolute; top:-18px; right:-8px; background:var(--accent-500); border-radius:50%; border:none; width:40px; height:40px; font-size:20px; cursor:pointer }
-.lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); background:transparent; border:none; color:#fff; font-size:40px; width:56px; height:56px; cursor:pointer }
-.lightbox-nav.prev { left:-64px }
-.lightbox-nav.next { right:-64px }
+.lightbox-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+}
+
+/* Buttons pinned to the screen, always visible */
+.lightbox-close,
+.lightbox-nav {
+  position: fixed;
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(245, 239, 231, 0.12);
+  color: #F5EFE7;
+  cursor: pointer;
+  transition: background .2s;
+}
+.lightbox-close:hover,
+.lightbox-nav:hover { background: rgba(245, 239, 231, 0.25); }
+
+.lightbox-close {
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  font-size: 26px;
+}
+.lightbox-nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  font-size: 32px;
+}
+.lightbox-nav.prev { left: 12px; }
+.lightbox-nav.next { right: 12px; }
+
+@media (max-width: 767px) {
+  .lightbox-overlay { padding: 64px 12px; }
+  .lightbox-nav {
+    top: auto;
+    bottom: 16px;
+    transform: none;
+  }
+  .lightbox-nav.prev { left: calc(50% - 60px); }
+  .lightbox-nav.next { right: calc(50% - 60px); }
+}
 
 
 

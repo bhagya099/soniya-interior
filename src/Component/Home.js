@@ -2,6 +2,7 @@ import React from "react";
 // IMAGES intentionally removed; featured images come from `src/data/projects.js`
 import Footer from "../Component/Footer";
 import CtaBand from "../Component/CtaBand";
+import TestimonialSlider from "../Component/TestimonialSlider";
 import projects from "../data/projects";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -24,12 +25,6 @@ const PROCESS_STEPS = [
     title: "Handover",
     text: "We walk through the finished space with you, settle the last details and hand over a home that's ready to live in.",
   },
-];
-
-// TODO: replace with real client quotes (with their permission) before launch
-const TESTIMONIALS = [
-  { quote: "Every corner of our home was thoughtfully designed, making excellent use of the available space while maintaining a modern and elegant look. The quality of materials, craftsmanship, and finishing exceeded our expectations.", name: "Mr. & Mrs. Kulkarni", city: "Pune" },
-  { quote: "Everyone praises the interior during puja. We are so happy with the end product.", name: "Mr. & Mrs. Deshpande", city: "Pune" },
 ];
 
 // Three rooms for the home grid; skip the hero photo so it isn't shown twice
@@ -122,24 +117,10 @@ export default function Home() {
       <section className="testimonials">
         <Container>
           <div className="text-center mb-5" data-reveal>
-            <p className="eyebrow">Kind words</p>
+            <p className="eyebrow">Testimonial</p>
             <h2>What our clients say</h2>
           </div>
-          <Row className="gx-4 gx-lg-5 gy-5 justify-content-center align-items-start">
-            {TESTIMONIALS.map((t, i) => (
-              <Col key={i} md={6}>
-                <figure className="testimonial">
-                  <span className="testimonial-mark" aria-hidden="true">“</span>
-                  <blockquote>
-                    <p>{t.quote}</p>
-                  </blockquote>
-                  <figcaption>
-                    {t.name}, {t.city}
-                  </figcaption>
-                </figure>
-              </Col>
-            ))}
-          </Row>
+          <TestimonialSlider />
         </Container>
       </section>
 

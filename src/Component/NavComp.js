@@ -35,7 +35,7 @@ const NavComp = () => {
       >
         <Container>
           <Navbar.Brand as={Link} to="/" onClick={closeMenu} aria-label="Sparkle Design Studio — home">
-            <img src={logo} alt="Sparkle Design Studio" className="nav-logo" />
+            <img src={logo} alt="" className="nav-logo" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -1,72 +1,106 @@
+/**
+ * Compresses every image in src/image so the site stays fast.
+ *
+ * Runs automatically before each build (see "prebuild" in package.json),
+ * so new photos can be dropped in straight from a phone or camera.
+ *
+ * - Photos: fit inside 1800x1800 (portrait and landscape), EXIF rotation
+ *   applied, all metadata (incl. GPS location) stripped, JPEG ~200-450 KB.
+ * - Photos saved as PNG are converted to .jpg (the .png is removed).
+ * - Logos (any file with "logo" in its name) stay PNG with transparency.
+ * - Files that are already optimised are skipped, so running it on every
+ *   build never re-compresses (and never degrades) the same photo twice.
+ */
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
 
 const ROOT = path.join(__dirname, "..", "src", "image");
+const MAX_SIDE = 1800;
+const PHOTO_TARGET = 450 * 1024;
+const LOGO_MAX_WIDTH = 600;
+const LOGO_TARGET = 150 * 1024;
 
-const PHOTO_FILES = [
-  ...glob(path.join(ROOT, "rooms")),
-  path.join(ROOT, "Soniya-pic.jpeg"),
-];
-
-const LOGO_FILES = [
-  path.join(ROOT, "logo.png"),
-  path.join(ROOT, "logo-footer.png"),
-];
-
-function glob(dir) {
+function walk(dir) {
   const out = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) out.push(...glob(full));
+    if (entry.isDirectory()) out.push(...walk(full));
     else if (/\.(jpe?g|png)$/i.test(entry.name)) out.push(full);
   }
   return out;
 }
 
+const kb = (n) => `${Math.round(n / 1024)}KB`;
+const isLogo = (file) => /logo/i.test(path.basename(file));
+
 async function compressPhoto(file) {
   const before = fs.statSync(file).size;
-  const buf = fs.readFileSync(file);
-  const img = sharp(buf).rotate();
-  const meta = await img.metadata();
+  const meta = await sharp(file).metadata();
+  const isPng = /\.png$/i.test(file);
+  const longest = Math.max(meta.width, meta.height);
 
-  let pipeline = img.resize({
-    width: 1600,
-    withoutEnlargement: true,
-  });
+  if (!isPng && before <= PHOTO_TARGET && longest <= MAX_SIDE) return null;
 
-  // Try a few quality levels to land in the 200-400KB target band.
+  const base = sharp(fs.readFileSync(file))
+    .rotate()
+    .resize({ width: MAX_SIDE, height: MAX_SIDE, fit: "inside", withoutEnlargement: true });
+
   let out;
-  for (const quality of [78, 68, 58, 48]) {
-    out = await pipeline.jpeg({ quality, mozjpeg: true }).toBuffer();
-    if (out.length <= 400 * 1024) break;
+  for (const quality of [80, 72, 64, 56]) {
+    out = await base.clone().jpeg({ quality, mozjpeg: true, progressive: true }).toBuffer();
+    // Stop once it's under target and never end up bigger than the original.
+    if (out.length <= Math.min(PHOTO_TARGET, before)) break;
   }
 
-  fs.writeFileSync(file, out);
-  const after = out.length;
-  console.log(
-    `${path.relative(ROOT, file)}: ${(before / 1024 / 1024).toFixed(1)}MB -> ${(after / 1024).toFixed(0)}KB (orig ${meta.width}x${meta.height})`
-  );
+  const target = isPng ? file.replace(/\.png$/i, ".jpg") : file;
+  fs.writeFileSync(target, out);
+  if (target !== file) fs.unlinkSync(file);
+
+  return { file: target, before, after: out.length, size: `${meta.width}x${meta.height}`, renamed: target !== file };
 }
 
 async function compressLogo(file) {
   const before = fs.statSync(file).size;
-  const buf = fs.readFileSync(file);
-  const out = await sharp(buf)
-    .resize({ width: 500, withoutEnlargement: true })
-    .png({ quality: 80, compressionLevel: 9 })
+  const meta = await sharp(file).metadata();
+  if (before <= LOGO_TARGET && meta.width <= LOGO_MAX_WIDTH) return null;
+
+  const out = await sharp(fs.readFileSync(file))
+    .resize({ width: LOGO_MAX_WIDTH, withoutEnlargement: true })
+    .png({ compressionLevel: 9, palette: true, quality: 90 })
     .toBuffer();
   fs.writeFileSync(file, out);
-  console.log(
-    `${path.relative(ROOT, file)}: ${(before / 1024 / 1024).toFixed(1)}MB -> ${(out.length / 1024).toFixed(0)}KB`
-  );
+  return { file, before, after: out.length, size: `${meta.width}x${meta.height}` };
 }
 
 (async () => {
-  for (const file of PHOTO_FILES) {
-    await compressPhoto(file);
+  const results = [];
+  let failed = 0;
+
+  for (const file of walk(ROOT)) {
+    try {
+      const r = isLogo(file) ? await compressLogo(file) : await compressPhoto(file);
+      if (r) results.push(r);
+    } catch (err) {
+      failed++;
+      console.error(`✗ ${path.relative(ROOT, file)}: ${err.message}`);
+    }
   }
-  for (const file of LOGO_FILES) {
-    if (fs.existsSync(file)) await compressLogo(file);
+
+  if (!results.length) {
+    console.log("Images: all already optimised.");
+  } else {
+    for (const r of results) {
+      console.log(`✓ ${path.relative(ROOT, r.file)}: ${kb(r.before)} -> ${kb(r.after)} (was ${r.size})`);
+    }
+    const saved = results.reduce((s, r) => s + r.before - r.after, 0);
+    console.log(`Saved ${(saved / 1024 / 1024).toFixed(1)} MB across ${results.length} file(s).`);
+
+    const renamed = results.filter((r) => r.renamed && !r.file.includes(`${path.sep}rooms${path.sep}`));
+    for (const r of renamed) {
+      console.warn(`! ${path.relative(ROOT, r.file)} was converted from PNG — update its import to .jpg`);
+    }
   }
+
+  if (failed) process.exit(1);
 })();
