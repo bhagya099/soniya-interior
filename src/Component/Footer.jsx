@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
 
-const PHONE_DISPLAY = "+91 88059 89342";
-const PHONE_TEL = "tel:+918805989342";
-const WHATSAPP_URL = "https://wa.me/918805989342";
+const PHONE_DISPLAY = "+91 88059 89343";
+const PHONE_TEL = "tel:+918805989343";
+const WHATSAPP_URL = "https://wa.me/918805989343";
 const EMAIL = "sparkledesignstudio7@gmail.com";
 const INSTAGRAM_URL = "https://www.instagram.com/sparklebysoniya?igsh=eWpoN2UwZ2ZhcDV4&utm_source=qr";
 

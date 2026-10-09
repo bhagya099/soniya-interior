@@ -4,7 +4,6 @@
  * To add one, append { quote, name } below. Entries whose quote is "TODO"
  * are placeholders and are not shown on the site.
  */
-// TODO: replace with real client quotes (with their permission) before launch
 const testimonials = [
   {
     quote:
@@ -15,7 +14,7 @@ const testimonials = [
     quote: "Everyone praises the interior during puja. We are so happy with the end product.",
     name: "Mr. & Mrs. Deshpande, Pune",
   },
-  { quote: "TODO", name: "TODO" },
+  { quote: "Working with Sparkle Design Studio was a wonderful experience! ✨ Soniya understood our preferences perfectly and transformed our space into something beautiful, elegant, and functional. Her attention to detail, choice of colours, fabrics, and décor made all the difference. Truly happy with the outcome and would definitely recommend her to anyone looking for beautiful interiors! 🤍", name: "Mr. Gaurav Mishra, Pune" },
   { quote: "TODO", name: "TODO" },
   { quote: "TODO", name: "TODO" },
 ];

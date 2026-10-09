@@ -10,15 +10,19 @@
  */
 
 // Loads every .jpg/.jpeg/.png file anywhere under src/image/rooms/
-const context = require.context("../image/rooms", true, /\.(jpe?g|png)$/i);
+// (any letter case: the glob itself is case-sensitive)
+const images = import.meta.glob("../image/rooms/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}", {
+  eager: true,
+  import: "default",
+});
 
 const imagesBySlug = {};
-context.keys().forEach((key) => {
-  // key looks like "./living-room/Image_1.jpg"
-  const match = key.match(/^\.\/([^/]+)\//);
+Object.entries(images).forEach(([key, src]) => {
+  // key looks like "../image/rooms/living-room/Image_1.jpg"
+  const match = key.match(/\/rooms\/([^/]+)\//);
   if (!match) return;
   const slug = match[1];
-  (imagesBySlug[slug] = imagesBySlug[slug] || []).push({ key, src: context(key) });
+  (imagesBySlug[slug] = imagesBySlug[slug] || []).push({ key, src });
 });
 Object.values(imagesBySlug).forEach((list) =>
   list.sort((a, b) => a.key.localeCompare(b.key, undefined, { numeric: true }))

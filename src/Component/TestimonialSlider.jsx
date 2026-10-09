@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Autoplay, EffectFade, Keyboard } from "swiper";
+import { A11y, Autoplay, EffectFade, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import testimonials from "../data/testimonials";
