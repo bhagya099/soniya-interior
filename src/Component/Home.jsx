@@ -8,7 +8,11 @@ import { Link } from "react-router-dom";
 // The gallery copy of the hero photo, imported only so the featured grid can skip it.
 // The hero itself is served from public/ (hero-*.jpg, made by compress-images)
 // so index.html can preload it before the JS runs.
-import heroGalleryImage from "../image/rooms/living-room/IMG_0034.jpeg";
+// Looked up with a glob (not a plain import) so deleting this photo from the
+// gallery doesn't break the build; it's then just undefined.
+const heroGalleryImage = Object.values(
+  import.meta.glob("../image/rooms/living-room/IMG_0034.jpeg", { eager: true, import: "default" })
+)[0];
 
 const BASE = import.meta.env.BASE_URL;
 

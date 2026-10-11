@@ -17,14 +17,16 @@
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
+    "build:gh-pages": "cross-env VITE_BASE=/soniya-interior/ VITE_SITE_URL=https://bhagya099.github.io npm run build",
     "preview": "vite preview",
     "compress-images": "node scripts/compress-images.cjs",
     "prebuild": "npm run compress-images",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build:gh-pages",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.1.2",
+    "cross-env": "^10.1.0",
     "gh-pages": "6.1.1",
     "sass": "^1.105.1",
     "sharp": "^0.35.5",
