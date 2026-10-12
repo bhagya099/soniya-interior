@@ -1,6 +1,6 @@
 # Soniya Interior — Interior Designer Portfolio (React)
 
-https://bhagya099.github.io/soniya-interior/
+https://sparkledesignstudio.co.in
 
 This repository is a small React-based template for an interior designer portfolio website. It includes pages for Home, About, Projects, and Contact and demonstrates a responsive portfolio grid with image previews.
 
@@ -25,6 +25,19 @@ npm start
 
 Open http://localhost:3000 in your browser.
 
+## Deployment
+The site is hosted on Cloudflare Workers (static assets from `dist/`, configured in `wrangler.jsonc`).
+Every push to `main` deploys automatically, so there is no `npm run deploy` anymore.
+
+To check a production build locally:
+
+```bash
+npm run build
+npm run preview
+```
+
+The share-preview links (`og:url`, `og:image`) use `https://sparkledesignstudio.co.in` by default; set `VITE_SITE_URL` to override it.
+
 ## Customize
 - Replace images in `src/image/Project_pics` and `src/image/Home_pics`.
 - Edit project metadata in `src/data/projects.js`.
@@ -33,7 +46,6 @@ Open http://localhost:3000 in your browser.
 ## Next steps (suggested)
 - Add form handling (Netlify Forms, Formspree, or your backend).
 - Improve accessibility attributes and alt text for images.
-- Add deployment script (Netlify, Vercel, GitHub Pages).
 
 ---
 This project was bootstrapped with Create React App. See the original CRA README for advanced build and deployment topics.

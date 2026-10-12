@@ -1,17 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Origin the site is served from, no path (e.g. https://example.com),
-// used for the absolute og:url / og:image links in index.html. Optional:
-// when unset those links fall back to site-relative paths.
-process.env.VITE_SITE_URL = (process.env.VITE_SITE_URL || "").replace(/\/+$/, "");
+// Origin the site is served from, no path, used for the absolute og:url /
+// og:image links in index.html. Set VITE_SITE_URL to override the live domain.
+process.env.VITE_SITE_URL = (
+  process.env.VITE_SITE_URL || "https://sparkledesignstudio.co.in"
+).replace(/\/+$/, "");
 
 export default defineConfig({
   plugins: [react()],
-  // "/" for Cloudflare Workers (the default). "npm run deploy" builds with
-  // VITE_BASE=/soniya-interior/ for https://bhagya099.github.io/soniya-interior/
-  base: process.env.VITE_BASE || "/",
-  // Builds into dist/ (Vite's default), which Cloudflare Workers (wrangler.jsonc) and "npm run deploy" publish
+  base: "/",
+  // Builds into dist/ (Vite's default), which Cloudflare Workers publishes (see wrangler.jsonc)
   server: {
     port: 3000,
   },
