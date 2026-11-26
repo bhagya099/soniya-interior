@@ -1,4 +1,5 @@
 import { Container } from "react-bootstrap";
+import { SHOW_PHONE } from "../siteConfig";
 
 const PHONE_DISPLAY = "+91 88059 89343";
 const PHONE_TEL = "tel:+918805989343";
@@ -41,18 +42,22 @@ const Footer = () => {
           <div className="footer-col">
             <h2 className="footer-heading">Get in touch</h2>
             <ul className="footer-list footer-contact">
-              <li>
-                <a href={PHONE_TEL} className="footer-tap">
-                  <Icon><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></Icon>
-                  {PHONE_DISPLAY}
-                </a>
-              </li>
-              <li>
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-tap">
-                  <Icon><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z" /><path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.6c-3.8.4-7.6-3.4-7.2-7.2l1.6-.3.8 1.8L9 9.5z" /></Icon>
-                  WhatsApp
-                </a>
-              </li>
+              {SHOW_PHONE && (
+                <>
+                  <li>
+                    <a href={PHONE_TEL} className="footer-tap">
+                      <Icon><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></Icon>
+                      {PHONE_DISPLAY}
+                    </a>
+                  </li>
+                  <li>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="footer-tap">
+                      <Icon><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z" /><path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.6c-3.8.4-7.6-3.4-7.2-7.2l1.6-.3.8 1.8L9 9.5z" /></Icon>
+                      WhatsApp
+                    </a>
+                  </li>
+                </>
+              )}
               <li>
                 <a href={`mailto:${EMAIL}`} className="footer-email">
                   <Icon><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" /></Icon>

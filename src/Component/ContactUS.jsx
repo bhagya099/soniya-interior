@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
 import emailConfig from "../emailConfig";
 import contactImage from "../image/contact-image.jpeg";
+import { SHOW_PHONE } from "../siteConfig";
 
 const WHATSAPP_URL = "https://wa.me/918805989343";
 const PROJECT_TYPES = ["Full home", "Living room", "Kitchen", "Bedroom", "Pooja room", "Other"];
@@ -164,14 +165,16 @@ export default function ContactUs() {
                   <Button variant="primary" type="submit" disabled={status === "sending"}>
                     {status === "sending" ? "Sending…" : "Send message"}
                   </Button>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-outline-tan">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z" />
-                      <path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.6c-3.8.4-7.6-3.4-7.2-7.2l1.6-.3.8 1.8L9 9.5z" />
-                    </svg>
-                    Chat on WhatsApp
-                  </a>
+                  {SHOW_PHONE && (
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-outline-tan">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.4L3 21z" />
+                        <path d="M9 9.5c.3 2.2 2.3 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.6c-3.8.4-7.6-3.4-7.2-7.2l1.6-.3.8 1.8L9 9.5z" />
+                      </svg>
+                      Chat on WhatsApp
+                    </a>
+                  )}
                 </div>
               </Form>
             </Col>
